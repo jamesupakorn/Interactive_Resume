@@ -162,7 +162,9 @@ function App() {
         camera={{ fov: 37, near: 0.1, far: 120, position: [0, 1.78, 1.78] }}
         gl={{ alpha: true, antialias: false, powerPreference: "high-performance" }}
       >
-        <SceneContent mouseRef={mouseRef} />
+        <Suspense fallback={null}>
+          <SceneContent mouseRef={mouseRef} />
+        </Suspense>
       </Canvas>
 
       <nav className="site-nav">
