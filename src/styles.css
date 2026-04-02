@@ -185,6 +185,15 @@ body[data-theme="light"] .site-nav {
   background: rgba(4, 20, 31, 0.36);
 }
 
+.canvas-fallback {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
 .model-viewer-hint {
   margin-top: 14px;
   font-size: 0.92rem;

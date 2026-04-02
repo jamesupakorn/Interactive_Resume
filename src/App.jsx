@@ -1,4 +1,4 @@
-import { Fragment, Suspense, useEffect, useMemo, useRef, useState } from "react";
+import { Component, Fragment, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Html, useAnimations, useFBX, useGLTF } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { clone } from "three/examples/jsm/utils/SkeletonUtils.js";
@@ -12,6 +12,29 @@ import {
   getViewFromHash,
   normalizeMixamoClip,
 } from "./utils/journeyUtils";
+
+class CanvasErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error) {
+    console.error("Canvas render error:", error);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback ?? null;
+    }
+
+    return this.props.children;
+  }
+}
 
 // Shared TH/EN switch to keep nav and avatar header controls consistent.
 function LanguageSwitch({ lang, setLang }) {
@@ -45,7 +68,14 @@ function App() {
 
   const t = content[lang];
   const journeyStops = useMemo(() => buildJourneyStops(t), [t]);
-  const activeStop = journeyStops[activeStopIndex] ?? journeyStops[0];
+  const activeStop =
+    journeyStops[activeStopIndex] ??
+    journeyStops[0] ?? {
+      title: t.journeyIntroTitle,
+      section: t.sections.profile,
+      date: "",
+      description: [t.avatarIntroLead],
+    };
 
   const filteredSkills = useMemo(() => {
     return skills.filter((skill) => filter === "all" || skill.category === filter);
@@ -117,20 +147,24 @@ function App() {
         <section className="model-viewer-panel panel">
           <div className="journey-layout">
             <div className="model-viewer-canvas">
-              <Canvas
-                dpr={[1, 1.25]}
-                camera={{ fov: 38, near: 0.1, far: 220, position: [0, 1.7, 6] }}
-                gl={{ antialias: false, alpha: false, powerPreference: "high-performance" }}
+              <CanvasErrorBoundary
+                fallback={<div className="canvas-fallback">3D viewer unavailable.</div>}
               >
-                <Suspense fallback={null}>
-                  <JourneyScene
-                    activeStopIndex={activeStopIndex}
-                    onStopChange={setActiveStopIndex}
-                    theme={theme}
-                    timelineStops={journeyStops}
-                  />
-                </Suspense>
-              </Canvas>
+                <Canvas
+                  dpr={[1, 1.25]}
+                  camera={{ fov: 38, near: 0.1, far: 220, position: [0, 1.7, 6] }}
+                  gl={{ antialias: false, alpha: false, powerPreference: "high-performance" }}
+                >
+                  <Suspense fallback={null}>
+                    <JourneyScene
+                      activeStopIndex={activeStopIndex}
+                      onStopChange={setActiveStopIndex}
+                      theme={theme}
+                      timelineStops={journeyStops}
+                    />
+                  </Suspense>
+                </Canvas>
+              </CanvasErrorBoundary>
             </div>
 
             <aside className="journey-sidebar">
@@ -156,16 +190,18 @@ function App() {
 
   return (
     <Fragment>
-      <Canvas
-        id="bg-canvas"
-        dpr={[1, 1.5]}
-        camera={{ fov: 37, near: 0.1, far: 120, position: [0, 1.78, 1.78] }}
-        gl={{ alpha: true, antialias: false, powerPreference: "high-performance" }}
-      >
-        <Suspense fallback={null}>
-          <SceneContent mouseRef={mouseRef} />
-        </Suspense>
-      </Canvas>
+      <CanvasErrorBoundary fallback={null}>
+        <Canvas
+          id="bg-canvas"
+          dpr={[1, 1.5]}
+          camera={{ fov: 37, near: 0.1, far: 120, position: [0, 1.78, 1.78] }}
+          gl={{ alpha: true, antialias: false, powerPreference: "high-performance" }}
+        >
+          <Suspense fallback={null}>
+            <SceneContent mouseRef={mouseRef} />
+          </Suspense>
+        </Canvas>
+      </CanvasErrorBoundary>
 
       <nav className="site-nav">
         <a className="site-nav-brand" href="#profile">
