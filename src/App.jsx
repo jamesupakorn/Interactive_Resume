@@ -13,6 +13,9 @@ import {
   normalizeMixamoClip,
 } from "./utils/journeyUtils";
 
+// Helper to build correct paths for models based on build base path
+const getModelPath = (path) => `${import.meta.env.BASE_URL}${path}`;
+
 class CanvasErrorBoundary extends Component {
   constructor(props) {
     super(props);
@@ -557,9 +560,9 @@ function JourneyScene({ activeStopIndex, onStopChange, moveInput, theme, timelin
 }
 
 function AvatarModel({ moveInput, onStopChange, timelineStops }) {
-  const gltf = useGLTF("/models/Supakorn.glb");
-  const walkingFbx = useFBX("/models/Walking.fbx");
-  const runningFbx = useFBX("/models/Run.fbx");
+  const gltf = useGLTF(getModelPath("models/Supakorn.glb"));
+  const walkingFbx = useFBX(getModelPath("models/Walking.fbx"));
+  const runningFbx = useFBX(getModelPath("models/Run.fbx"));
   const avatarRef = useRef();
   const scene = useMemo(() => clone(gltf.scene), [gltf.scene]);
   const keysRef = useRef({
@@ -788,8 +791,8 @@ function AvatarModel({ moveInput, onStopChange, timelineStops }) {
 function SceneContent({ mouseRef }) {
   const modelRef = useRef();
   const particlesRef = useRef();
-  const suitModel = useGLTF("/models/supakorn_suit_Tpost.glb");
-  const standingPoseFbx = useFBX("/models/Male%20Standing%20Pose.fbx");
+  const suitModel = useGLTF(getModelPath("models/supakorn_suit_Tpost.glb"));
+  const standingPoseFbx = useFBX(getModelPath("models/Male%20Standing%20Pose.fbx"));
   const modelScene = useMemo(() => clone(suitModel.scene), [suitModel.scene]);
 
   const standingClip = useMemo(() => {
@@ -872,9 +875,9 @@ function SceneContent({ mouseRef }) {
   );
 }
 
-useGLTF.preload("/models/Supakorn.glb");
-useGLTF.preload("/models/supakorn_suit_Tpost.glb");
-useFBX.preload("/models/Walking.fbx");
-useFBX.preload("/models/Male%20Standing%20Pose.fbx");
+useGLTF.preload(getModelPath("models/Supakorn.glb"));
+useGLTF.preload(getModelPath("models/supakorn_suit_Tpost.glb"));
+useFBX.preload(getModelPath("models/Walking.fbx"));
+useFBX.preload(getModelPath("models/Male%20Standing%20Pose.fbx"));
 
 export default App;
