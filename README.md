@@ -18,8 +18,16 @@ npm run build
 npm run preview
 ```
 
+## Deploy (GitHub Pages)
+
+```bash
+npm run deploy
+```
+
+This will build the project and publish `dist` to the `gh-pages` branch.
+
 ## Customize
 
-- Update profile text and section content in `src/App.jsx`
-- Update skills and timeline data in `src/App.jsx`
+- Update profile text and localized section content in `src/data/resumeContent.js`
+- Update journey generation and animation helper logic in `src/utils/journeyUtils.js`
 - Update visual theme colors and layout in `src/styles.css`
