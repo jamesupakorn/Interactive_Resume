@@ -65,11 +65,43 @@ function App() {
   const [lang, setLang] = useState("th");
   const [view, setView] = useState(() => getViewFromHash());
   const [activeStopIndex, setActiveStopIndex] = useState(0);
+  const [moveInput, setMoveInput] = useState({
+    forward: false,
+    backward: false,
+    sprint: false,
+  });
+
+  const isTouchDevice = useMemo(() => {
+    if (typeof window === "undefined") {
+      return false;
+    }
+
+    return window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+  }, []);
+
+  const isIOS = useMemo(() => {
+    if (typeof navigator === "undefined") {
+      return false;
+    }
+
+    return (
+      /iPad|iPhone|iPod/i.test(navigator.userAgent) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+    );
+  }, []);
+
+  const avatarDpr = isIOS ? [1, 1] : isTouchDevice ? [1, 1.15] : [1, 1.25];
+  const resumeDpr = isIOS ? [1, 1] : isTouchDevice ? [1, 1.25] : [1, 1.5];
+  const avatarGl = isIOS
+    ? { antialias: true, alpha: true, powerPreference: "default" }
+    : { antialias: false, alpha: false, powerPreference: "high-performance" };
+  const resumeGl = isIOS
+    ? { antialias: true, alpha: true, powerPreference: "default" }
+    : { alpha: true, antialias: false, powerPreference: "high-performance" };
 
   const t = content[lang];
   const journeyStops = useMemo(() => buildJourneyStops(t), [t]);
-  const activeStop =
-    journeyStops[activeStopIndex] ??
+  const activeStop = journeyStops[activeStopIndex] ??
     journeyStops[0] ?? {
       title: t.journeyIntroTitle,
       section: t.sections.profile,
@@ -122,6 +154,14 @@ function App() {
   };
 
   if (view === "avatar") {
+    const setMoveState = (nextState) => {
+      setMoveInput((prev) => ({ ...prev, ...nextState }));
+    };
+
+    const resetMoveState = () => {
+      setMoveInput({ forward: false, backward: false, sprint: false });
+    };
+
     return (
       <div className="model-page-shell">
         <header className="model-page-header panel">
@@ -151,20 +191,60 @@ function App() {
                 fallback={<div className="canvas-fallback">3D viewer unavailable.</div>}
               >
                 <Canvas
-                  dpr={[1, 1.25]}
+                  dpr={avatarDpr}
                   camera={{ fov: 38, near: 0.1, far: 220, position: [0, 1.7, 6] }}
-                  gl={{ antialias: false, alpha: false, powerPreference: "high-performance" }}
+                  gl={avatarGl}
+                  fallback={<div className="canvas-fallback">อุปกรณ์นี้ไม่รองรับ 3D canvas</div>}
                 >
                   <Suspense fallback={null}>
                     <JourneyScene
                       activeStopIndex={activeStopIndex}
                       onStopChange={setActiveStopIndex}
+                      moveInput={moveInput}
                       theme={theme}
                       timelineStops={journeyStops}
                     />
                   </Suspense>
                 </Canvas>
               </CanvasErrorBoundary>
+              <div
+                className="touch-controls in-canvas"
+                role="group"
+                aria-label="Avatar movement controls"
+              >
+                <button
+                  type="button"
+                  onPointerDown={() => setMoveState({ forward: true, backward: false })}
+                  onPointerUp={resetMoveState}
+                  onPointerCancel={resetMoveState}
+                  onPointerLeave={resetMoveState}
+                  onContextMenu={(e) => e.preventDefault()}
+                >
+                  ↑ เดินหน้า
+                </button>
+                <button
+                  type="button"
+                  onPointerDown={() => setMoveState({ backward: true, forward: false })}
+                  onPointerUp={resetMoveState}
+                  onPointerCancel={resetMoveState}
+                  onPointerLeave={resetMoveState}
+                  onContextMenu={(e) => e.preventDefault()}
+                >
+                  ↓ ถอยหลัง
+                </button>
+                <button
+                  type="button"
+                  onPointerDown={() =>
+                    setMoveState({ sprint: true, backward: true, forward: false })
+                  }
+                  onPointerUp={resetMoveState}
+                  onPointerCancel={resetMoveState}
+                  onPointerLeave={resetMoveState}
+                  onContextMenu={(e) => e.preventDefault()}
+                >
+                  ⚡ เร่ง
+                </button>
+              </div>
             </div>
 
             <aside className="journey-sidebar">
@@ -193,9 +273,10 @@ function App() {
       <CanvasErrorBoundary fallback={null}>
         <Canvas
           id="bg-canvas"
-          dpr={[1, 1.5]}
+          dpr={resumeDpr}
           camera={{ fov: 37, near: 0.1, far: 120, position: [0, 1.78, 1.78] }}
-          gl={{ alpha: true, antialias: false, powerPreference: "high-performance" }}
+          gl={resumeGl}
+          fallback={null}
         >
           <Suspense fallback={null}>
             <SceneContent mouseRef={mouseRef} />
@@ -365,7 +446,7 @@ function App() {
   );
 }
 
-function JourneyScene({ activeStopIndex, onStopChange, theme, timelineStops }) {
+function JourneyScene({ activeStopIndex, onStopChange, moveInput, theme, timelineStops }) {
   const roadColor = theme === "light" ? "#c6b18b" : "#1a2b3a";
   const roadStripeColor = theme === "light" ? "#efe2c6" : "#496b7f";
   const groundColor = theme === "light" ? "#efe4d2" : "#07131e";
@@ -458,12 +539,16 @@ function JourneyScene({ activeStopIndex, onStopChange, theme, timelineStops }) {
         );
       })}
 
-      <AvatarModel onStopChange={onStopChange} timelineStops={timelineStops} />
+      <AvatarModel
+        moveInput={moveInput}
+        onStopChange={onStopChange}
+        timelineStops={timelineStops}
+      />
     </>
   );
 }
 
-function AvatarModel({ onStopChange, timelineStops }) {
+function AvatarModel({ moveInput, onStopChange, timelineStops }) {
   const gltf = useGLTF("/models/Supakorn.glb");
   const walkingFbx = useFBX("/models/Walking.fbx");
   const runningFbx = useFBX("/models/Run.fbx");
@@ -592,9 +677,12 @@ function AvatarModel({ onStopChange, timelineStops }) {
     const allZ = timelineStops.map((stop) => stop.z);
     const minZ = Math.min(...allZ);
     const maxZ = Math.max(...allZ);
-    const moveZ = Number(keysRef.current.backward) - Number(keysRef.current.forward);
+    const isForward = keysRef.current.forward || moveInput.forward;
+    const isBackward = keysRef.current.backward || moveInput.backward;
+    const isSprint = keysRef.current.sprint || moveInput.sprint;
+    const moveZ = Number(isBackward) - Number(isForward);
     const isMoving = moveZ !== 0;
-    const speed = keysRef.current.sprint ? 4.6 : 2.4;
+    const speed = isSprint ? 4.6 : 2.4;
     const nextZ = Math.min(
       maxZ,
       Math.max(minZ, avatarRef.current.position.z + moveZ * speed * delta)
@@ -618,7 +706,7 @@ function AvatarModel({ onStopChange, timelineStops }) {
     const idleAction = idleClip ? actions[idleClip.name] : null;
     const walkAction = actions.Walk;
     const runAction = actions.Run;
-    const activeState = isMoving ? (keysRef.current.sprint ? "run" : "walk") : "idle";
+    const activeState = isMoving ? (isSprint ? "run" : "walk") : "idle";
 
     if (activeState !== movingRef.current) {
       const previousState = movingRef.current;
@@ -641,15 +729,34 @@ function AvatarModel({ onStopChange, timelineStops }) {
     walkAction?.setEffectiveTimeScale(0.9);
     runAction?.setEffectiveTimeScale(1.15);
 
-    const nearestStopIndex = timelineStops.reduce((closestIndex, stop, index, stops) => {
-      const currentDistance = Math.abs(stops[closestIndex].z - nextZ);
-      const nextDistance = Math.abs(stop.z - nextZ);
-      return nextDistance < currentDistance ? index : closestIndex;
-    }, 0);
+    // Find the closest stop based on actual distance
+    let closestIndex = activeStopRef.current;
+    let closestDistance = Math.abs(timelineStops[closestIndex].z - nextZ);
 
-    if (nearestStopIndex !== activeStopRef.current) {
-      activeStopRef.current = nearestStopIndex;
-      onStopChange?.(nearestStopIndex);
+    for (let i = 0; i < timelineStops.length; i++) {
+      const distance = Math.abs(timelineStops[i].z - nextZ);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestIndex = i;
+      }
+    }
+
+    // Only switch if moving toward the new stop and past its midpoint from current stop
+    if (closestIndex !== activeStopRef.current) {
+      const currentStopZ = timelineStops[activeStopRef.current].z;
+      const nextStopZ = timelineStops[closestIndex].z;
+      const midpoint = (currentStopZ + nextStopZ) / 2;
+
+      // Moving forward (Z decreasing) toward a stop with smaller Z?
+      // Or moving backward (Z increasing) toward a stop with larger Z?
+      const isMovingTowardNewStop =
+        (nextStopZ < currentStopZ && nextZ < midpoint) ||
+        (nextStopZ > currentStopZ && nextZ > midpoint);
+
+      if (isMovingTowardNewStop) {
+        activeStopRef.current = closestIndex;
+        onStopChange?.(closestIndex);
+      }
     }
 
     const avatarPos = avatarRef.current.position;
