@@ -62,6 +62,8 @@ body {
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--panel-border);
   gap: 16px;
+  padding-left: max(24px, env(safe-area-inset-left));
+  padding-right: max(24px, env(safe-area-inset-right));
 }
 
 body[data-theme="light"] .site-nav {
@@ -151,6 +153,8 @@ body[data-theme="light"] .site-nav {
   width: min(1024px, 92vw);
   margin: 0 auto;
   padding: 0 0 56px;
+  padding-left: max(0px, env(safe-area-inset-left));
+  padding-right: max(0px, env(safe-area-inset-right));
 }
 
 .model-page-shell {
@@ -159,6 +163,8 @@ body[data-theme="light"] .site-nav {
   width: min(1180px, 94vw);
   margin: 0 auto;
   padding: 28px 0 40px;
+  padding-left: max(0px, env(safe-area-inset-left));
+  padding-right: max(0px, env(safe-area-inset-right));
 }
 
 .model-page-header {
@@ -177,12 +183,38 @@ body[data-theme="light"] .site-nav {
 }
 
 .model-viewer-canvas {
+  position: relative;
   width: 100%;
   height: min(72vh, 760px);
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid var(--panel-border);
   background: rgba(4, 20, 31, 0.36);
+}
+
+.touch-controls {
+  display: none;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.touch-controls button {
+  pointer-events: auto;
+  min-height: 44px;
+  min-width: 104px;
+  touch-action: manipulation;
+  backdrop-filter: blur(6px);
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.touch-controls.in-canvas {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  z-index: 20;
 }
 
 .canvas-fallback {
@@ -199,6 +231,22 @@ body[data-theme="light"] .site-nav {
   font-size: 0.92rem;
 }
 
+.touch-controls {
+  margin-top: 14px;
+  display: none;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.touch-controls button {
+  min-height: 44px;
+  min-width: 110px;
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 .journey-sidebar {
   display: grid;
   gap: 16px;
@@ -213,17 +261,31 @@ body[data-theme="light"] .site-nav {
   padding: 18px;
 }
 
+.journey-current-card {
+  max-height: 55vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
 .journey-persona-card h2,
 .journey-current-card h2 {
   font-size: clamp(1.35rem, 1.8vw, 1.95rem);
   line-height: 1.16;
   word-break: break-word;
+  overflow-wrap: break-word;
+  margin-bottom: 8px;
 }
 
 .journey-current-card p {
   margin-top: 8px;
   line-height: 1.5;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+  margin-right: 0;
 }
 
 .journey-current-role {
@@ -760,6 +822,25 @@ main {
   .model-viewer-canvas {
     height: min(64vh, 700px);
   }
+
+  .site-nav {
+    padding: 12px 16px;
+  }
+
+  .site-nav-brand {
+    font-size: 1rem;
+  }
+
+  .site-nav-link {
+    font-size: 0.83rem;
+    padding: 6px 9px;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .touch-controls {
+    display: flex;
+  }
 }
 
 @media (max-width: 760px) {
@@ -789,6 +870,25 @@ main {
     display: none;
   }
 
+  .site-nav {
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .site-nav-controls {
+    gap: 6px;
+  }
+
+  .btn-journey-sm {
+    padding: 8px 12px;
+    font-size: 0.79rem;
+  }
+
+  .lang-btn {
+    padding: 8px 10px;
+    font-size: 0.75rem;
+  }
+
   .hero {
     border-radius: 18px;
     padding: 22px 18px;
@@ -815,7 +915,50 @@ main {
     padding: 18px;
   }
 
+  .touch-controls {
+    display: flex;
+  }
+
   h1 {
     line-height: 1;
+  }
+}
+
+@media (max-width: 560px) {
+  .page-shell {
+    width: min(1024px, 96vw);
+  }
+
+  .model-page-shell {
+    width: min(1024px, 97vw);
+    padding-bottom: calc(28px + env(safe-area-inset-bottom));
+  }
+
+  .hero-cta {
+    gap: 8px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    text-align: center;
+  }
+
+  .touch-controls {
+    position: sticky;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    z-index: 6;
+    background: rgba(5, 18, 28, 0.6);
+    border: 1px solid var(--panel-border);
+    border-radius: 14px;
+    padding: 8px;
+    backdrop-filter: blur(8px);
+  }
+
+  .touch-controls button {
+    flex: 1;
+    min-width: 96px;
+    font-size: 0.82rem;
+    padding: 10px;
   }
 }
