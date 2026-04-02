@@ -746,7 +746,7 @@ function AvatarModel({ moveInput, onStopChange, timelineStops }) {
       const currentStopZ = timelineStops[activeStopRef.current].z;
       const nextStopZ = timelineStops[closestIndex].z;
       const midpoint = (currentStopZ + nextStopZ) / 2;
-      
+
       // Moving forward (Z decreasing) toward a stop with smaller Z?
       // Or moving backward (Z increasing) toward a stop with larger Z?
       const isMovingTowardNewStop =
