@@ -16,20 +16,28 @@ import {
 class CanvasErrorBoundary extends Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false };
+    this.state = { hasError: false, errorMessage: "" };
   }
 
-  static getDerivedStateFromError() {
-    return { hasError: true };
+  static getDerivedStateFromError(error) {
+    return { hasError: true, errorMessage: error?.message || "Unknown error" };
   }
 
   componentDidCatch(error) {
     console.error("Canvas render error:", error);
+    console.error("Stack:", error?.stack);
   }
 
   render() {
     if (this.state.hasError) {
-      return this.props.fallback ?? null;
+      return (
+        <div className="canvas-fallback" style={{ flexDirection: "column", gap: "10px" }}>
+          {this.props.fallback}
+          <p style={{ fontSize: "0.8rem", opacity: 0.6, margin: 0 }}>
+            Debug: {this.state.errorMessage}
+          </p>
+        </div>
+      );
     }
 
     return this.props.children;
