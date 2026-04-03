@@ -231,7 +231,7 @@ function App() {
                   onPointerLeave={resetMoveState}
                   onContextMenu={(e) => e.preventDefault()}
                 >
-                  ↑ เดินหน้า
+                  ↑ ถอยหลัง
                 </button>
                 <button
                   type="button"
@@ -241,7 +241,7 @@ function App() {
                   onPointerLeave={resetMoveState}
                   onContextMenu={(e) => e.preventDefault()}
                 >
-                  ↓ ถอยหลัง
+                  ↓ เดินหน้า
                 </button>
                 <button
                   type="button"
@@ -534,9 +534,10 @@ function JourneyScene({ activeStopIndex, onStopChange, moveInput, theme, timelin
                 opacity={stopOpacity}
               />
             </mesh>
-            <Html position={[pinOffset, 0.62, 0]} distanceFactor={11}>
+            <Html position={[pinOffset, 0.62, 0]} distanceFactor={11} zIndexRange={[2, 0]}>
               <div
                 style={{
+                  pointerEvents: "none",
                   transform: `translateX(${stop.side === -1 ? "0%" : "-100%"}) translateY(-50%)`,
                 }}
               >

@@ -55,6 +55,7 @@ body {
   top: 0;
   z-index: 100;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding: 14px 24px;
@@ -106,8 +107,10 @@ body[data-theme="light"] .site-nav {
 .site-nav-controls {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 8px;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .site-nav-lang {
@@ -215,6 +218,9 @@ body[data-theme="light"] .site-nav {
   right: 10px;
   bottom: 10px;
   z-index: 20;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
 }
 .canvas-fallback {
   width: 100%;
@@ -239,7 +245,8 @@ body[data-theme="light"] .site-nav {
 
 .touch-controls button {
   min-height: 44px;
-  min-width: 110px;
+  min-width: 0;
+  width: 100%;
   touch-action: manipulation;
   -webkit-touch-callout: none;
   user-select: none;
@@ -870,8 +877,15 @@ main {
   }
 
   .site-nav {
+    align-items: flex-start;
     gap: 10px;
     padding: 10px 12px;
+  }
+
+  .site-nav-brand {
+    max-width: 42vw;
+    white-space: normal;
+    line-height: 1.1;
   }
 
   .site-nav-controls {
@@ -898,15 +912,32 @@ main {
   }
 
   .hero-stats-col {
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 12px;
-    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    padding: 14px;
     min-width: unset;
+    width: 100%;
+  }
+
+  .hero-stat {
+    min-width: 0;
+    gap: 5px;
+  }
+
+  .hero-stat-label {
+    order: 1;
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    line-height: 1.2;
+    white-space: normal;
   }
 
   .hero-stat-value {
-    font-size: 1.6rem;
+    order: 2;
+    font-size: clamp(1.1rem, 4.5vw, 1.6rem);
+    line-height: 1.05;
+    word-break: break-word;
   }
 
   .panel {
@@ -916,6 +947,10 @@ main {
 
   .touch-controls {
     display: flex;
+  }
+
+  .journey-pin {
+    display: none;
   }
 
   h1 {
@@ -956,8 +991,15 @@ main {
 
   .touch-controls button {
     flex: 1;
-    min-width: 96px;
+    min-width: 0;
     font-size: 0.82rem;
     padding: 10px;
+  }
+
+  .touch-controls.in-canvas {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    gap: 6px;
   }
 }
