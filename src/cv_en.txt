@@ -1,0 +1,45 @@
+Supakorn Raengkasiwit
+Sr. Programmer / Full Stack Developer
+Contact Information (Contact)
+Tel: 093-772-0044
+Email: jamesupakorn@hotmail.com
+Line: @manofmoon
+Portfolio: jamesupakorn.github.io/Interactive_Resume ,https://finance-track-one.vercel.app/profiles ,https://toothbin.vercel.app/
+Profile Summary (Profile Summary)
+A programmer with over 5 years of experience specializing in both Backend and Frontend development using Java, JSP (JavaServer Pages), and Spring Boot. Passionate about coding since my studies, I have delivered high-quality solutions for complex projects including medical data management and HR management systems. I am also skilled at consulting and resolving technical challenges for the team.
+Work Experience (Work Experience)
+Sr. Programmer | Entronica Co., Ltd. (May 2024 – Present)
+Developer Role: Designed and developed Backend services using Java Spring Boot for new system builds and API development.
+Backup Consultant Role: Served as technical advisor to the team, analyzing complex problems and accelerating issue resolution to improve overall team performance.
+Project Management Office | INTERNATIONAL RESEARCH CORPORATION (November 2023 – April 2024)
+Oversaw program delivery timelines and enforced strict quality checks on all deliverables.
+Coordination Role: Acted as a liaison between vendors and clients to ensure smooth project progression on both sides, significantly reducing the risk of project delivery delays.
+Full Stack Web Developer | myHR Corporation Limited (June 2021 – November 2023)
+Primary Role: Developed and designed a Full Stack HRM (Human Resource Management) system covering both Backend and Frontend.
+System & Database Design: Collaborated closely with the Presale team to gather requirements, improve the system for clients/users, conduct initial UX/UI design, and maintain database architecture for optimal system performance.
+Technology & Frameworks: Built with JSP (JavaServer Pages), AngularJS, and JavaScript alongside an in-house MVC framework (CSCframework) using Java and XML for database structure and model definitions bridging Frontend and Backend.
+Programmer | Supreme Products Co., Ltd. (December 2018 – May 2021)
+System Design & Client Management: Participated in UX/UI design, database design and administration, and gathered on-site client requirements to ensure the system met real-world usage needs.
+Ambulance Camera Viewer: Developed a real-time system displaying critical device data such as cameras, GPS, and vital signs, enabling medical teams to assess situations accurately and rapidly (C#/.NET Framework).
+Patient Queue System: Built a patient queue management system with priority ordering and audio announcement to reduce patient wait times.
+Tele Pharma Platform: Developed a video-call platform for pharmacists to exchange patient and medication data between hospitals, enabling accurate and timely pharmaceutical consultation.
+EMS Bot & Chatbot System: Developed a video-call communication program and automated chatbot system (text and voice) to expand user communication channels and reduce staff workload.
+Administrative Officer / IT Support | Thonburi Commercial College (May 2017 – November 2018)
+Provided IT Support for 6 months before transitioning to research administration and official documentation management, developing strong document management and data administration skills.
+Loan Officer | Thai Credit Retail Bank (March 2016 – April 2017)
+Advised clients on loan products and managed debt portfolios, gaining experience in client communication, persuasion, and relationship management.
+Technical Skills (Technical Skills)
+Expert: Java, JSP (JavaServer Pages), JavaScript, HTML5, CSS, Bootstrap
+Intermediate: Spring Boot, C#/.NET Framework, React
+Basic: Python, NET Core MVC, AngularJS, React Native
+Database: SQL, MySQL, PostgreSQL, Oracle
+Tools: Git, Adobe Photoshop, Adobe Illustrator (for UX/UI design)
+Soft Skills (Soft Skills)
+Problem-Solving & Consulting: Quickly analyzes complex issues and provides effective technical consultation to the team (Sr. Programmer level).
+Communication & Client Management: Outgoing with strong interpersonal skills; experienced in persuasion and building client relationships.
+Work Attitude: Fast learner, calm under pressure, continuously self-improving.
+Education (Education)
+Bachelor's Degree (2016–2018): Information Systems | Rajamangala University of Technology Phra Nakhon
+High Vocational Certificate (2014–2016): Business Computer | Thonburi Commercial College
+Vocational Certificate (2011–2014): Business Computer | Thonburi Commercial College
+Lower Secondary (2008–2011): Photisarnpittayakorn School

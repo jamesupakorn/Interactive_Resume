@@ -166,6 +166,22 @@ const content = {
         url: "https://finance-track-one.vercel.app/profiles",
         label: "ดูผลงาน",
       },
+      {
+        title: "ToothBin",
+        description:
+          "เว็บแอปสำหรับจัดการข้อมูลทันตกรรมและการใช้งานที่เกี่ยวข้อง พร้อมโครงสร้างหน้าจอที่ใช้งานง่าย",
+        tech: ["Web App", "Vercel"],
+        url: "https://toothbin.vercel.app/",
+        label: "ดูผลงาน",
+      },
+      {
+        title: "Tooth Node API",
+        description:
+          "บริการ Backend API สำหรับระบบ ToothBin รองรับการเชื่อมต่อข้อมูลและการทำงานฝั่งเซิร์ฟเวอร์",
+        tech: ["Node.js", "API", "Vercel"],
+        url: "https://tooth-node-api.vercel.app/",
+        label: "ดูผลงาน",
+      },
     ],
     repoTitle: "GitHub Repositories",
     repositories: [
@@ -180,6 +196,10 @@ const content = {
       {
         name: "Interactive_Resume",
         url: "https://github.com/jamesupakorn/Interactive_Resume",
+      },
+      {
+        name: "ToothBin",
+        url: "https://github.com/jamesupakorn/ToothBin",
       },
     ],
     contact: {
@@ -327,6 +347,22 @@ const content = {
           "A personal finance tracking application for recording income and expenses, analyzing spending patterns, and summarizing financial status clearly.",
         tech: ["React", "Next.js", "Vercel"],
         url: "https://finance-track-one.vercel.app/profiles",
+        label: "View Project",
+      },
+      {
+        title: "ToothBin",
+        description:
+          "A web application for dental-related data management with an easy-to-use interface.",
+        tech: ["Web App", "Vercel"],
+        url: "https://toothbin.vercel.app/",
+        label: "View Project",
+      },
+      {
+        title: "Tooth Node API",
+        description:
+          "A backend API service for ToothBin, handling data connectivity and server-side operations.",
+        tech: ["Node.js", "API", "Vercel"],
+        url: "https://tooth-node-api.vercel.app/",
         label: "View Project",
       },
     ],

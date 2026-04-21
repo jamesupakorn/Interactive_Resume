@@ -1003,3 +1003,337 @@ main {
     gap: 6px;
   }
 }
+
+/* ══════════════════════════════════════════════════
+   CV DOWNLOAD MODAL
+══════════════════════════════════════════════════ */
+.cv-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: rgba(6, 20, 31, 0.72);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 180ms ease both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.cv-modal-box {
+  background: var(--bg-2);
+  border: 1px solid var(--panel-border);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 28px 24px 20px;
+  width: min(380px, 90vw);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: slideUp 220ms ease both;
+}
+
+.cv-modal-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: center;
+}
+
+.cv-modal-options {
+  display: flex;
+  gap: 12px;
+}
+
+.cv-modal-option {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 18px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--panel-border);
+  background: rgba(10, 30, 44, 0.45);
+  text-decoration: none;
+  color: var(--text);
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
+  cursor: pointer;
+}
+
+.cv-modal-option:hover {
+  border-color: var(--accent);
+  background: rgba(255, 138, 60, 0.08);
+  transform: translateY(-2px);
+}
+
+.cv-modal-option-code {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.cv-modal-option-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.cv-modal-option-sub {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.cv-modal-close {
+  align-self: center;
+  background: transparent;
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 7px 22px;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.cv-modal-close:hover {
+  border-color: var(--muted);
+  color: var(--text);
+}
+
+@media print {
+  .cv-modal-backdrop {
+    display: none !important;
+  }
+}
+
+/* ══════════════════════════════════════════════════
+   PRINT / PDF EXPORT  —  @media print
+   Shows only .print-cv-root, hides the entire app UI
+   Paper size: A4 (210mm × 297mm)
+══════════════════════════════════════════════════ */
+
+/* Hidden in normal browsing */
+.print-cv-root {
+  display: none;
+}
+
+@media print {
+  /* Hide entire app UI */
+  body > #root > * {
+    display: none !important;
+  }
+
+  /* Show only the CV */
+  .print-cv-root {
+    display: block !important;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #fff;
+    color: #111;
+    font-family: "Space Grotesk", "Sarabun", sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.55;
+    padding: 16mm 18mm 16mm 18mm;
+    width: 210mm;
+    min-height: 297mm;
+    box-sizing: border-box;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  /* ── Header ── */
+  .pcv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12mm;
+    margin-bottom: 4mm;
+  }
+
+  .pcv-name {
+    font-size: 18pt;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0 0 1mm;
+    letter-spacing: -0.3px;
+  }
+
+  .pcv-subtitle {
+    font-size: 10pt;
+    color: #444;
+    margin: 0;
+  }
+
+  .pcv-header-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1mm;
+    font-size: 8.5pt;
+    color: #333;
+    white-space: nowrap;
+  }
+
+  .pcv-online-link {
+    color: #c0550a;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 8pt;
+  }
+
+  .pcv-rule {
+    border: none;
+    border-top: 1.5px solid #1a1a2e;
+    margin: 2mm 0 4mm;
+  }
+
+  /* ── Sections ── */
+  .pcv-section {
+    margin-bottom: 5mm;
+    page-break-inside: avoid;
+  }
+
+  .pcv-section-title {
+    font-size: 10pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #1a1a2e;
+    border-bottom: 0.75px solid #bbb;
+    padding-bottom: 0.8mm;
+    margin: 0 0 2.5mm;
+  }
+
+  .pcv-body {
+    margin: 0;
+    color: #222;
+  }
+
+  /* ── Skills ── */
+  .pcv-skills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2mm;
+  }
+
+  .pcv-skill-row {
+    display: flex;
+    gap: 3mm;
+  }
+
+  .pcv-skill-label {
+    font-weight: 600;
+    min-width: 28mm;
+    color: #1a1a2e;
+    flex-shrink: 0;
+  }
+
+  .pcv-skill-list {
+    color: #333;
+  }
+
+  /* ── Experience ── */
+  .pcv-exp-item {
+    margin-bottom: 3.5mm;
+    page-break-inside: avoid;
+  }
+
+  .pcv-exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 6mm;
+    margin-bottom: 1mm;
+  }
+
+  .pcv-exp-title {
+    font-weight: 700;
+    font-size: 9.5pt;
+    color: #1a1a2e;
+  }
+
+  .pcv-exp-date {
+    font-size: 8.5pt;
+    color: #555;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .pcv-exp-desc {
+    margin: 0;
+    padding-left: 5mm;
+    color: #333;
+  }
+
+  .pcv-exp-desc li {
+    margin-bottom: 0.5mm;
+  }
+
+  /* ── Lists ── */
+  .pcv-list {
+    margin: 0;
+    padding-left: 5mm;
+    color: #333;
+  }
+
+  .pcv-list li {
+    margin-bottom: 0.8mm;
+  }
+
+  /* ── Portfolio ── */
+  .pcv-portfolio-item {
+    display: flex;
+    gap: 4mm;
+    align-items: baseline;
+    margin-bottom: 1.5mm;
+    flex-wrap: wrap;
+  }
+
+  .pcv-portfolio-title {
+    font-weight: 700;
+    color: #1a1a2e;
+  }
+
+  .pcv-portfolio-tech {
+    font-size: 8pt;
+    color: #666;
+  }
+
+  .pcv-portfolio-url {
+    font-size: 8pt;
+    color: #c0550a;
+    text-decoration: none;
+  }
+
+  .pcv-repos {
+    margin-top: 2.5mm;
+    display: flex;
+    gap: 3mm;
+    flex-wrap: wrap;
+    font-size: 8pt;
+  }
+
+  /* ── Print button hidden when printing ── */
+  .btn-export-pdf {
+    display: none !important;
+  }
+}

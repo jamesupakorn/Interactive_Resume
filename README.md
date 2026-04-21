@@ -18,6 +18,19 @@ npm run build
 npm run preview
 ```
 
+## Export Thai CV to A4 PDF
+
+```bash
+npm install
+npx playwright install chromium
+npm run export:cv:th
+```
+
+Output files:
+
+- `exports/Supakorn_CV_TH_A4.pdf`
+- `exports/Supakorn_CV_TH_A4.html`
+
 ## Deploy (GitHub Pages)
 
 ```bash
