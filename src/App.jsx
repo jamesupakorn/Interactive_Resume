@@ -81,6 +81,7 @@ function App() {
     backward: false,
     sprint: false,
   });
+  const [cvModalOpen, setCvModalOpen] = useState(false);
 
   const isTouchDevice = useMemo(() => {
     if (typeof window === "undefined") {
@@ -111,6 +112,7 @@ function App() {
     : { alpha: true, antialias: false, powerPreference: "high-performance" };
 
   const t = content[lang];
+  const onlineResumeUrl = "https://jamesupakorn.github.io/Interactive_Resume/";
   const journeyStops = useMemo(() => buildJourneyStops(t), [t]);
   const activeStop = journeyStops[activeStopIndex] ??
     journeyStops[0] ?? {
@@ -123,6 +125,25 @@ function App() {
   const filteredSkills = useMemo(() => {
     return skills.filter((skill) => filter === "all" || skill.category === filter);
   }, [filter]);
+
+  const printSkillRows = useMemo(() => {
+    const categories = ["expert", "intermediate", "basic", "database", "tools"];
+
+    return categories
+      .map((category) => {
+        const names = skills
+          .filter((skill) => skill.category === category)
+          .map((skill) => skill.name)
+          .join(", ");
+
+        return {
+          key: category,
+          label: t.filters[category],
+          value: names,
+        };
+      })
+      .filter((item) => item.value.length > 0);
+  }, [t]);
 
   useEffect(() => {
     document.body.dataset.theme = theme;
@@ -340,6 +361,13 @@ function App() {
                 <button type="button" className="btn-secondary" onClick={openAvatarLab}>
                   {t.openAvatarLab} →
                 </button>
+                <button
+                  type="button"
+                  className="btn-secondary btn-export-pdf"
+                  onClick={() => setCvModalOpen(true)}
+                >
+                  ⬇ {lang === "th" ? "ดาวน์โหลด CV" : "Download CV"}
+                </button>
               </div>
             </div>
             <div className="hero-stats-col">
@@ -452,6 +480,106 @@ function App() {
             </div>
           </section>
         </main>
+      </div>
+
+      {cvModalOpen && (
+        <CvDownloadModal
+          lang={lang}
+          baseUrl={import.meta.env.BASE_URL}
+          onClose={() => setCvModalOpen(false)}
+        />
+      )}
+
+      <div className="print-cv-root" aria-hidden="true">
+        <header className="pcv-header">
+          <div>
+            <h1 className="pcv-name">{t.name}</h1>
+            <p className="pcv-subtitle">{t.subtitle}</p>
+          </div>
+          <div className="pcv-header-contact">
+            <span>{t.contact.phone}</span>
+            <span>{t.contact.email}</span>
+            <span>{t.contact.line}</span>
+            <a className="pcv-online-link" href={onlineResumeUrl}>
+              Resume Online: {onlineResumeUrl}
+            </a>
+          </div>
+        </header>
+
+        <hr className="pcv-rule" />
+
+        <section className="pcv-section">
+          <h2 className="pcv-section-title">{t.sections.profile}</h2>
+          <p className="pcv-body">{t.profileSummary}</p>
+        </section>
+
+        <section className="pcv-section">
+          <h2 className="pcv-section-title">{t.sections.experience}</h2>
+          {t.experiences.map((item) => (
+            <article className="pcv-exp-item" key={`${item.title}-${item.date}-print`}>
+              <div className="pcv-exp-header">
+                <div className="pcv-exp-title">{item.title}</div>
+                <div className="pcv-exp-date">{item.date}</div>
+              </div>
+              <ul className="pcv-exp-desc">
+                {item.description.map((detail) => (
+                  <li key={`${item.title}-${detail}`}>{detail}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </section>
+
+        <section className="pcv-section">
+          <h2 className="pcv-section-title">{t.sections.skills}</h2>
+          <div className="pcv-skills-grid">
+            {printSkillRows.map((row) => (
+              <div className="pcv-skill-row" key={row.key}>
+                <span className="pcv-skill-label">{row.label}</span>
+                <span className="pcv-skill-list">{row.value}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="pcv-section">
+          <h2 className="pcv-section-title">{t.sections.softSkills}</h2>
+          <ul className="pcv-list">
+            {t.softSkills.map((skill) => (
+              <li key={`print-soft-${skill}`}>{skill}</li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="pcv-section">
+          <h2 className="pcv-section-title">{t.sections.education}</h2>
+          <ul className="pcv-list">
+            {t.education.map((item) => (
+              <li key={`print-edu-${item}`}>{item}</li>
+            ))}
+          </ul>
+        </section>
+
+        <section className="pcv-section">
+          <h2 className="pcv-section-title">{t.sections.portfolio}</h2>
+          {t.portfolio.map((project) => (
+            <div className="pcv-portfolio-item" key={`print-portfolio-${project.title}`}>
+              <span className="pcv-portfolio-title">{project.title}</span>
+              <span className="pcv-portfolio-tech">{project.tech.join(" · ")}</span>
+              <a className="pcv-portfolio-url" href={project.url}>
+                {project.url}
+              </a>
+            </div>
+          ))}
+
+          <div className="pcv-repos">
+            {t.repositories.map((repo) => (
+              <a className="pcv-portfolio-url" key={`print-repo-${repo.url}`} href={repo.url}>
+                {repo.name}
+              </a>
+            ))}
+          </div>
+        </section>
       </div>
     </Fragment>
   );
@@ -873,6 +1001,61 @@ function SceneContent({ mouseRef }) {
         <pointsMaterial color="#ffbe8f" size={0.025} transparent opacity={0.9} />
       </points>
     </Fragment>
+  );
+}
+
+function CvDownloadModal({ lang, baseUrl, onClose }) {
+  const options = [
+    {
+      code: "EN",
+      label: "English",
+      sub: "English CV",
+      file: `${baseUrl}cv/Supakorn_CV_EN_A4.pdf`,
+      name: "Supakorn_CV_EN_A4.pdf",
+    },
+    {
+      code: "TH",
+      label: "ภาษาไทย",
+      sub: "Thai CV",
+      file: `${baseUrl}cv/Supakorn_CV_TH_A4.pdf`,
+      name: "Supakorn_CV_TH_A4.pdf",
+    },
+    {
+      code: "EN+TH",
+      label: lang === "th" ? "รวมทั้งคู่" : "Combined",
+      sub: "EN → TH",
+      file: `${baseUrl}cv/Supakorn_CV_Combined_A4.pdf`,
+      name: "Supakorn_CV_Combined_A4.pdf",
+    },
+  ];
+
+  return (
+    <div className="cv-modal-backdrop" onClick={onClose} role="dialog" aria-modal="true">
+      <div className="cv-modal-box" onClick={(e) => e.stopPropagation()}>
+        <p className="cv-modal-title">
+          {lang === "th" ? "เลือกภาษา CV ที่ต้องการดาวน์โหลด" : "Select CV language to download"}
+        </p>
+        <div className="cv-modal-options">
+          {options.map((opt) => (
+            <a
+              key={opt.code}
+              className="cv-modal-option"
+              href={opt.file}
+              download={opt.name}
+              rel="noreferrer"
+              onClick={onClose}
+            >
+              <span className="cv-modal-option-code">{opt.code}</span>
+              <span className="cv-modal-option-label">{opt.label}</span>
+              <span className="cv-modal-option-sub">{opt.sub}</span>
+            </a>
+          ))}
+        </div>
+        <button type="button" className="cv-modal-close" onClick={onClose}>
+          {lang === "th" ? "ยกเลิก" : "Cancel"}
+        </button>
+      </div>
+    </div>
   );
 }
 
