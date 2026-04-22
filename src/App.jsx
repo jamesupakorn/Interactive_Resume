@@ -474,7 +474,7 @@ function App() {
             <div className="contact-actions">
               <a href="tel:+66937720044">{t.contact.phone}</a>
               <a href="mailto:jamesupakorn@hotmail.com">{t.contact.email}</a>
-              <a href="https://line.me/R/ti/p/%40manofmoon" target="_blank" rel="noreferrer">
+              <a href="https://line.me/ti/p/~manofmoon" target="_blank" rel="noreferrer">
                 {t.contact.line}
               </a>
             </div>

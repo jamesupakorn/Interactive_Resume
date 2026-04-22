@@ -205,7 +205,7 @@ const content = {
     contact: {
       phone: "โทร: 093-772-0044",
       email: "อีเมล: jamesupakorn@hotmail.com",
-      line: "Line: @manofmoon",
+      line: "Line: manofmoon",
     },
   },
   en: {
@@ -384,7 +384,7 @@ const content = {
     contact: {
       phone: "Tel: 093-772-0044",
       email: "Email: jamesupakorn@hotmail.com",
-      line: "Line: @manofmoon",
+      line: "Line: manofmoon",
     },
   },
 };
