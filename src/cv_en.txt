@@ -3,7 +3,7 @@ Sr. Programmer / Full Stack Developer
 Contact Information (Contact)
 Tel: 093-772-0044
 Email: jamesupakorn@hotmail.com
-Line: @manofmoon
+Line: https://line.me/ti/p/~manofmoon
 Portfolio: jamesupakorn.github.io/Interactive_Resume ,https://finance-track-one.vercel.app/profiles ,https://toothbin.vercel.app/
 Profile Summary (Profile Summary)
 A programmer with over 5 years of experience specializing in both Backend and Frontend development using Java, JSP (JavaServer Pages), and Spring Boot. Passionate about coding since my studies, I have delivered high-quality solutions for complex projects including medical data management and HR management systems. I am also skilled at consulting and resolving technical challenges for the team.
