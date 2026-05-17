@@ -12,7 +12,7 @@
     "export:cv:combined": "node scripts/export-cv-combined-pdf.mjs",
     "export:cv": "npm run export:cv:th && npm run export:cv:en && npm run export:cv:combined",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b PRD -d dist",
+    "deploy": "gh-pages -b gh-pages -d dist",
     "format": "prettier . --write",
     "format:check": "prettier . --check"
   },
