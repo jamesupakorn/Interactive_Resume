@@ -82,6 +82,7 @@ function App() {
     sprint: false,
   });
   const [cvModalOpen, setCvModalOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("profile");
 
   const isTouchDevice = useMemo(() => {
     if (typeof window === "undefined") {
@@ -176,6 +177,22 @@ function App() {
     setActiveStopIndex(0);
   }, [lang]);
 
+  useEffect(() => {
+    const sections = t.navLinks
+      .map((l) => document.getElementById(l.href.slice(1)))
+      .filter(Boolean);
+    const obs = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        }
+      },
+      { rootMargin: "0px 0px -55% 0px", threshold: 0 }
+    );
+    sections.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, [t.navLinks]);
+
   const openAvatarLab = () => {
     window.location.hash = AVATAR_LAB_HASH;
   };
@@ -252,7 +269,7 @@ function App() {
                   onPointerLeave={resetMoveState}
                   onContextMenu={(e) => e.preventDefault()}
                 >
-                  ↑ ถอยหลัง
+                  ↑ เดินหน้า
                 </button>
                 <button
                   type="button"
@@ -262,7 +279,7 @@ function App() {
                   onPointerLeave={resetMoveState}
                   onContextMenu={(e) => e.preventDefault()}
                 >
-                  ↓ เดินหน้า
+                  ↓ ถอยหลัง
                 </button>
                 <button
                   type="button"
@@ -322,7 +339,11 @@ function App() {
         </a>
         <div className="site-nav-links">
           {t.navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="site-nav-link">
+            <a
+              key={link.href}
+              href={link.href}
+              className={`site-nav-link${activeSection === link.href.slice(1) ? " active" : ""}`}
+            >
               {link.label}
             </a>
           ))}
@@ -426,16 +447,20 @@ function App() {
 
           <section className="panel" id="soft-skills">
             <h2>{t.sections.softSkills}</h2>
-            {t.softSkills.map((skill) => (
-              <p key={skill}>{skill}</p>
-            ))}
+            <ul className="soft-skill-list">
+              {t.softSkills.map((skill) => (
+                <li key={skill}>{skill}</li>
+              ))}
+            </ul>
           </section>
 
           <section className="panel" id="education">
             <h2>{t.sections.education}</h2>
-            {t.education.map((item) => (
-              <p key={item}>{item}</p>
-            ))}
+            <ul className="edu-list">
+              {t.education.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
           </section>
 
           <section className="panel" id="portfolio">
