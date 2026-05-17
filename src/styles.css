@@ -490,6 +490,12 @@ body[data-theme="light"] .site-nav {
   color: var(--accent-2);
   margin-bottom: 10px;
   font-weight: 600;
+  animation: available-pulse 2.6s ease-in-out infinite;
+}
+
+@keyframes available-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
 }
 
 .hero-bio {
@@ -676,9 +682,6 @@ main {
   border-color: transparent;
 }
 
-.filter-btn[data-filter="tools"] {
-  display: none;
-}
 
 .lang-btn {
   padding: 10px 14px;
@@ -822,6 +825,21 @@ main {
 
 .portfolio-link:hover {
   opacity: 0.75;
+}
+
+.repo-section {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--panel-border);
+}
+
+.repo-section-title {
+  margin: 0 0 12px !important;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted) !important;
+  font-weight: 600;
 }
 
 .soft-skill-list {
