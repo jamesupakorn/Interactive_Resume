@@ -42,13 +42,13 @@ function parseCvThai(rawText) {
   }
 
   const headingMap = {
-    "ข้อมูลติดต่อ (Contact)": "contact",
-    "สรุปโปรไฟล์ (Profile Summary)": "summary",
-    "ประสบการณ์ทํางาน (Work Experience)": "experience",
-    "ประสบการณ์ทำงาน (Work Experience)": "experience",
-    "ทักษะด้านเทคนิค (Technical Skills)": "technical",
-    "ทักษะด้านบุคคล (Soft Skills)": "soft",
-    "การศึกษา (Education)": "education",
+    "ข้อมูลติดต่อ": "contact",
+    "สรุปโปรไฟล์": "summary",
+    "ประสบการณ์ทํางาน": "experience",
+    "ประสบการณ์ทำงาน": "experience",
+    "ทักษะด้านเทคนิค": "technical",
+    "ทักษะด้านบุคคล": "soft",
+    "การศึกษา": "education",
   };
 
   const data = {
@@ -120,7 +120,13 @@ function parseCvThai(rawText) {
 
 function buildCvHtml(parsedCv) {
   const contactHtml = parsedCv.contactLines
-    .map((line) => `<div>${escapeHtml(line)}</div>`)
+    .map((line) => {
+      const lineMatch = line.match(/^Line:\s*(https:\/\/line\.me\/ti\/p\/~(\S+))$/);
+      if (lineMatch) {
+        return `<div>Line: <a href="${escapeHtml(lineMatch[1])}">${escapeHtml(lineMatch[2])}</a></div>`;
+      }
+      return `<div>${escapeHtml(line)}</div>`;
+    })
     .join("\n");
 
   const portfolioHtml = parsedCv.portfolioLinks

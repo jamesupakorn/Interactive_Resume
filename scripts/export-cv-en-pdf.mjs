@@ -42,12 +42,12 @@ function parseCvEnglish(rawText) {
   }
 
   const headingMap = {
-    "Contact Information (Contact)": "contact",
-    "Profile Summary (Profile Summary)": "summary",
-    "Work Experience (Work Experience)": "experience",
-    "Technical Skills (Technical Skills)": "technical",
-    "Soft Skills (Soft Skills)": "soft",
-    "Education (Education)": "education",
+    "Contact Information": "contact",
+    "Profile Summary": "summary",
+    "Work Experience": "experience",
+    "Technical Skills": "technical",
+    "Soft Skills": "soft",
+    "Education": "education",
   };
 
   const data = {
@@ -119,7 +119,13 @@ function parseCvEnglish(rawText) {
 
 function buildCvHtml(parsedCv) {
   const contactHtml = parsedCv.contactLines
-    .map((line) => `<div>${escapeHtml(line)}</div>`)
+    .map((line) => {
+      const lineMatch = line.match(/^Line:\s*(https:\/\/line\.me\/ti\/p\/~(\S+))$/);
+      if (lineMatch) {
+        return `<div>Line: <a href="${escapeHtml(lineMatch[1])}">${escapeHtml(lineMatch[2])}</a></div>`;
+      }
+      return `<div>${escapeHtml(line)}</div>`;
+    })
     .join("\n");
 
   const portfolioHtml = parsedCv.portfolioLinks
