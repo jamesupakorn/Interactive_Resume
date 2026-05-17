@@ -48,12 +48,12 @@ function parseCvEnglish(rawText) {
     .map((l) => l.trim())
     .filter(Boolean);
   const headingMap = {
-    "Contact Information (Contact)": "contact",
-    "Profile Summary (Profile Summary)": "summary",
-    "Work Experience (Work Experience)": "experience",
-    "Technical Skills (Technical Skills)": "technical",
-    "Soft Skills (Soft Skills)": "soft",
-    "Education (Education)": "education",
+    "Contact Information": "contact",
+    "Profile Summary": "summary",
+    "Work Experience": "experience",
+    "Technical Skills": "technical",
+    "Soft Skills": "soft",
+    "Education": "education",
   };
   return parseGeneric(lines, headingMap, "Portfolio:", "EN");
 }
@@ -64,13 +64,13 @@ function parseCvThai(rawText) {
     .map((l) => l.trim())
     .filter(Boolean);
   const headingMap = {
-    "ข้อมูลติดต่อ (Contact)": "contact",
-    "สรุปโปรไฟล์ (Profile Summary)": "summary",
-    "ประสบการณ์ทํางาน (Work Experience)": "experience",
-    "ประสบการณ์ทำงาน (Work Experience)": "experience",
-    "ทักษะด้านเทคนิค (Technical Skills)": "technical",
-    "ทักษะด้านบุคคล (Soft Skills)": "soft",
-    "การศึกษา (Education)": "education",
+    "ข้อมูลติดต่อ": "contact",
+    "สรุปโปรไฟล์": "summary",
+    "ประสบการณ์ทํางาน": "experience",
+    "ประสบการณ์ทำงาน": "experience",
+    "ทักษะด้านเทคนิค": "technical",
+    "ทักษะด้านบุคคล": "soft",
+    "การศึกษา": "education",
   };
   return parseGeneric(lines, headingMap, "ผลงานออนไลน์:", "TH");
 }

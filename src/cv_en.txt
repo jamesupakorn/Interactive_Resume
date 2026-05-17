@@ -1,13 +1,13 @@
 Supakorn Raengkasiwit
 Sr. Programmer / Full Stack Developer
-Contact Information (Contact)
+Contact Information
 Tel: 093-772-0044
 Email: jamesupakorn@hotmail.com
 Line: https://line.me/ti/p/~manofmoon
-Portfolio: jamesupakorn.github.io/Interactive_Resume ,https://finance-track-one.vercel.app/profiles ,https://toothbin.vercel.app/
-Profile Summary (Profile Summary)
+Portfolio: jamesupakorn.github.io/Interactive_Resume, https://finance-track-one.vercel.app/profiles, https://toothbin.vercel.app/
+Profile Summary
 A programmer with over 5 years of experience specializing in both Backend and Frontend development using Java, JSP (JavaServer Pages), and Spring Boot. Passionate about coding since my studies, I have delivered high-quality solutions for complex projects including medical data management and HR management systems. I am also skilled at consulting and resolving technical challenges for the team.
-Work Experience (Work Experience)
+Work Experience
 Sr. Programmer | Entronica Co., Ltd. (May 2024 – Present)
 Developer Role: Designed and developed Backend services using Java Spring Boot for new system builds and API development.
 Backup Consultant Role: Served as technical advisor to the team, analyzing complex problems and accelerating issue resolution to improve overall team performance.
@@ -28,17 +28,17 @@ Administrative Officer / IT Support | Thonburi Commercial College (May 2017 – 
 Provided IT Support for 6 months before transitioning to research administration and official documentation management, developing strong document management and data administration skills.
 Loan Officer | Thai Credit Retail Bank (March 2016 – April 2017)
 Advised clients on loan products and managed debt portfolios, gaining experience in client communication, persuasion, and relationship management.
-Technical Skills (Technical Skills)
+Technical Skills
 Expert: Java, JSP (JavaServer Pages), JavaScript, HTML5, CSS, Bootstrap
 Intermediate: Spring Boot, C#/.NET Framework, React
 Basic: Python, NET Core MVC, AngularJS, React Native
 Database: SQL, MySQL, PostgreSQL, Oracle
 Tools: Git, Adobe Photoshop, Adobe Illustrator (for UX/UI design)
-Soft Skills (Soft Skills)
+Soft Skills
 Problem-Solving & Consulting: Quickly analyzes complex issues and provides effective technical consultation to the team (Sr. Programmer level).
 Communication & Client Management: Outgoing with strong interpersonal skills; experienced in persuasion and building client relationships.
 Work Attitude: Fast learner, calm under pressure, continuously self-improving.
-Education (Education)
+Education
 Bachelor's Degree (2016–2018): Information Systems | Rajamangala University of Technology Phra Nakhon
 High Vocational Certificate (2014–2016): Business Computer | Thonburi Commercial College
 Vocational Certificate (2011–2014): Business Computer | Thonburi Commercial College

@@ -17,6 +17,8 @@ const skills = [
   { name: "MySQL", category: "database" },
   { name: "PostgreSQL", category: "database" },
   { name: "Oracle", category: "database" },
+  { name: "Three.js", category: "basic" },
+  { name: "MongoDB", category: "database" },
   { name: "Git", category: "tools" },
   { name: "Adobe Photoshop", category: "tools" },
   { name: "Adobe Illustrator", category: "tools" },
@@ -153,24 +155,24 @@ const content = {
       {
         title: "Interactive Resume",
         description:
-          "เว็บเรซูเม่แบบ Interactive พัฒนาด้วย React มี theme toggle และ layout แบบ responsive",
-        tech: ["React", "Vite", "CSS"],
-        url: "https://jamesupakorn.github.io/Resume_React",
+          "เว็บ Portfolio แบบ Interactive พัฒนาด้วย React + Three.js มี 3D Avatar, Life Journey timeline, theme toggle และรองรับดาวน์โหลด CV หลายภาษา",
+        tech: ["React", "Three.js", "Vite"],
+        url: "https://jamesupakorn.github.io/Interactive_Resume/",
         label: "ดูผลงาน",
       },
       {
         title: "Finance Tracker",
         description:
           "แอปพลิเคชันติดตามการเงินส่วนบุคคล ออกแบบมาเพื่อช่วยบันทึกรายรับ-รายจ่าย วิเคราะห์ข้อมูล และสรุปสถานะการเงินได้อย่างชัดเจน",
-        tech: ["React", "Next.js", "Vercel"],
+        tech: ["React", "Next.js", "MongoDB", "Vercel"],
         url: "https://finance-track-one.vercel.app/profiles",
         label: "ดูผลงาน",
       },
       {
         title: "ToothBin",
         description:
-          "เว็บแอปสำหรับจัดการข้อมูลทันตกรรมและการใช้งานที่เกี่ยวข้อง พร้อมโครงสร้างหน้าจอที่ใช้งานง่าย",
-        tech: ["Web App", "Vercel"],
+          "ระบบจัดการร้านกาแฟแบบ Full Stack รองรับเมนู ตะกร้าสินค้า จัดการ Stock และหน้า Admin แยก Frontend/Backend ชัดเจน",
+        tech: ["React", "Node.js", "PostgreSQL", "Supabase", "Vercel"],
         url: "https://toothbin.vercel.app/",
         label: "ดูผลงาน",
       },
@@ -178,7 +180,7 @@ const content = {
         title: "Tooth Node API",
         description:
           "บริการ Backend API สำหรับระบบ ToothBin รองรับการเชื่อมต่อข้อมูลและการทำงานฝั่งเซิร์ฟเวอร์",
-        tech: ["Node.js", "API", "Vercel"],
+        tech: ["Node.js", "Express", "Supabase", "Vercel"],
         url: "https://tooth-node-api.vercel.app/",
         label: "ดูผลงาน",
       },
@@ -188,10 +190,6 @@ const content = {
       {
         name: "FinanceTrack",
         url: "https://github.com/jamesupakorn/FinanceTrack",
-      },
-      {
-        name: "Resume_React",
-        url: "https://github.com/jamesupakorn/Resume_React",
       },
       {
         name: "Interactive_Resume",
@@ -336,24 +334,24 @@ const content = {
       {
         title: "Interactive Resume",
         description:
-          "An interactive resume built with React featuring a theme toggle and responsive layout.",
-        tech: ["React", "Vite", "CSS"],
-        url: "https://jamesupakorn.github.io/Resume_React",
+          "An interactive portfolio built with React and Three.js, featuring a 3D Avatar, Life Journey timeline, theme toggle, and multi-language CV download.",
+        tech: ["React", "Three.js", "Vite"],
+        url: "https://jamesupakorn.github.io/Interactive_Resume/",
         label: "View Project",
       },
       {
         title: "Finance Tracker",
         description:
           "A personal finance tracking application for recording income and expenses, analyzing spending patterns, and summarizing financial status clearly.",
-        tech: ["React", "Next.js", "Vercel"],
+        tech: ["React", "Next.js", "MongoDB", "Vercel"],
         url: "https://finance-track-one.vercel.app/profiles",
         label: "View Project",
       },
       {
         title: "ToothBin",
         description:
-          "A web application for dental-related data management with an easy-to-use interface.",
-        tech: ["Web App", "Vercel"],
+          "A full-stack cafe management system supporting menus, shopping cart, stock management, and an Admin dashboard with clearly separated Frontend and Backend.",
+        tech: ["React", "Node.js", "PostgreSQL", "Supabase", "Vercel"],
         url: "https://toothbin.vercel.app/",
         label: "View Project",
       },
@@ -361,7 +359,7 @@ const content = {
         title: "Tooth Node API",
         description:
           "A backend API service for ToothBin, handling data connectivity and server-side operations.",
-        tech: ["Node.js", "API", "Vercel"],
+        tech: ["Node.js", "Express", "Supabase", "Vercel"],
         url: "https://tooth-node-api.vercel.app/",
         label: "View Project",
       },
@@ -373,12 +371,12 @@ const content = {
         url: "https://github.com/jamesupakorn/FinanceTrack",
       },
       {
-        name: "Resume_React",
-        url: "https://github.com/jamesupakorn/Resume_React",
-      },
-      {
         name: "Interactive_Resume",
         url: "https://github.com/jamesupakorn/Interactive_Resume",
+      },
+      {
+        name: "ToothBin",
+        url: "https://github.com/jamesupakorn/ToothBin",
       },
     ],
     contact: {
