@@ -484,13 +484,15 @@ function App() {
               ))}
             </div>
 
-            <p>{t.repoTitle}</p>
-            <div className="contact-actions">
-              {t.repositories.map((repo) => (
-                <a key={repo.url} href={repo.url} target="_blank" rel="noreferrer">
-                  {repo.name}
-                </a>
-              ))}
+            <div className="repo-section">
+              <p className="repo-section-title">{t.repoTitle}</p>
+              <div className="contact-actions">
+                {t.repositories.map((repo) => (
+                  <a key={repo.url} href={repo.url} target="_blank" rel="noreferrer">
+                    {repo.name}
+                  </a>
+                ))}
+              </div>
             </div>
           </section>
 
