@@ -144,6 +144,29 @@ body[data-theme="light"] .site-nav {
   border-color: transparent;
 }
 
+.btn-nav-cv {
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--accent);
+  font-weight: 700;
+  font-family: inherit;
+  border: 1.5px solid var(--accent);
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.btn-nav-cv:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: translateY(-1px);
+  border-color: transparent;
+}
+
 .theme-btn {
   width: 36px;
   height: 36px;
@@ -813,9 +836,14 @@ main {
   background: rgba(47, 212, 199, 0.08);
 }
 
-.portfolio-link {
-  display: inline-block;
+.portfolio-links {
+  display: flex;
+  gap: 14px;
+  align-items: center;
   margin-top: 4px;
+}
+
+.portfolio-link {
   color: var(--accent);
   font-weight: 600;
   font-size: 0.88rem;
@@ -825,6 +853,24 @@ main {
 
 .portfolio-link:hover {
   opacity: 0.75;
+}
+
+.portfolio-repo-link {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-decoration: none;
+  border: 1px solid var(--panel-border);
+  padding: 3px 10px;
+  border-radius: 999px;
+  transition:
+    border-color 150ms ease,
+    color 150ms ease;
+}
+
+.portfolio-repo-link:hover {
+  border-color: var(--accent-2);
+  color: var(--accent-2);
 }
 
 .repo-section {

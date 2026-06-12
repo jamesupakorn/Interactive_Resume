@@ -6,7 +6,7 @@ Sr. Programmer / Full Stack Developer
 Line: https://line.me/ti/p/~manofmoon
 ผลงานออนไลน์: jamesupakorn.github.io/Interactive_Resume, https://finance-track-one.vercel.app/profiles, https://toothbin.vercel.app/
 สรุปโปรไฟล์
-โปรแกรมเมอร์ผู้มีประสบการณ์มากกว่า 5 ปี เชี่ยวชาญด้านการพัฒนาโปรแกรมทั้งในส่วน Backend และ Frontend ด้วยภาษา Java, JSP (JavaServer Pages) และ Spring Boot ด้วยความชื่นชอบในการเขียนโค้ดมาตั้งแต่สมัยเรียน ทำให้ผลงานที่ออกมามีคุณภาพและมีประสิทธิภาพสูง มีผลงานโดดเด่นในการพัฒนาโปรเจกต์ที่ซับซ้อน เช่น ระบบจัดการข้อมูลทางการแพทย์และระบบบริหารทรัพยากรบุคคล พร้อมทั้งมีความสามารถในการให้คำปรึกษาและแก้ไขปัญหาให้กับทีมได้อย่างมีประสิทธิภาพ
+Senior Full Stack Developer ประสบการณ์ 5+ ปี เชี่ยวชาญ Java, Spring Boot, JSP และ React พัฒนาระบบจริงใน Domain Healthcare (ระบบกล้องรถพยาบาล, คิวผู้ป่วย, Tele Pharma, EMS Bot), HR Management และ Financial Services มีประสบการณ์ครบวงจรทั้ง Backend API, Frontend UI/UX และ Technical Consulting สำหรับทีมข้ามสาย
 ประสบการณ์ทํางาน
 Sr. Programmer | Entronica Co., Ltd. (พฤษภาคม 2567 - ปัจจุบัน)
 รับผิดชอบหลักในการพัฒนา (Developer Role): ออกแบบและพัฒนา Backend โดยใช้ Java Spring Boot ในการพัฒนาและขึ้นระบบใหม่ (API Development)
@@ -14,7 +14,7 @@ Sr. Programmer | Entronica Co., Ltd. (พฤษภาคม 2567 - ปัจจ�
 Project Management Office | INTERNATIONAL RESEARCH CORPORATION (พฤศจิกายน 2566 - เมษายน 2567)
 ดูแลและควบคุมการส่งมอบงานโปรแกรมให้เป็นไปตามกำหนดเวลาที่วางแผนไว้ และตรวจสอบความถูกต้องของงานอย่างเข้มงวด
 บทบาทการประสานงาน: ทําหน้าที่เป็นคนกลางระหว่าง Vender และลูกค้า เพื่อสื่อสารและประสานงานให้ทุกขั้นตอนของโปรเจกต์เป็นไปอย่างราบรื่นและตรงตามความต้องการของทั้งสองฝ่าย ซึ่งช่วยให้สามารถ ลดความเสี่ยง ของความล่าช้าในการส่งมอบโปรเจกต์ได้เป็นอย่างดี
-Full Stack Web Developer | myHR Corporation Limited (มิถุนายน 2564 - พฤศจิกายน 2566)
+Full Stack Web Developer | myHR Corporation Limited (มิถุนายน 2564 - ตุลาคม 2566)
 บทบาทหลัก: พัฒนาและออกแบบระบบ HRM (Human Resource Management) แบบ Full Stack ครอบคลุมทั้ง Backend และ Frontend
 การออกแบบระบบและฐานข้อมูล: ทำงานใกล้ชิดกับทีม Presale เพื่อเก็บ Requirement, ปรับปรุงระบบให้ตอบโจทย์ลูกค้า/ผู้ใช้งาน, รวมถึงการออกแบบ UX/UI เบื้องต้น และดูแลโครงสร้างฐานข้อมูลเพื่อให้ระบบรองรับการใช้งานอย่างมีประสิทธิภาพ
 เทคโนโลยีและเฟรมเวิร์ก: ใช้ JSP (JavaServer Pages), AngularJS และ JavaScript ในการพัฒนาแอปพลิเคชัน ร่วมกับ CSCframwork ซึ่งเป็นเฟรมเวิร์ก MVC ที่พัฒนาขึ้นเองภายใน โดยใช้ Java และ XML ในการกำหนดโครงสร้างฐานข้อมูลและ Model เพื่อเป็นตัวกลางในการสื่อสารระหว่าง Frontend และ Backend

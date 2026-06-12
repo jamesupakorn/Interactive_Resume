@@ -6,7 +6,7 @@ Email: jamesupakorn@hotmail.com
 Line: https://line.me/ti/p/~manofmoon
 Portfolio: jamesupakorn.github.io/Interactive_Resume, https://finance-track-one.vercel.app/profiles, https://toothbin.vercel.app/
 Profile Summary
-A programmer with over 5 years of experience specializing in both Backend and Frontend development using Java, JSP (JavaServer Pages), and Spring Boot. Passionate about coding since my studies, I have delivered high-quality solutions for complex projects including medical data management and HR management systems. I am also skilled at consulting and resolving technical challenges for the team.
+Senior Full Stack Developer with 5+ years of experience across Java, Spring Boot, JSP, and React. Delivered production systems in Healthcare (real-time ambulance monitoring, patient queue management, Tele Pharma, EMS Bot), HRM, and Fintech domains. Experienced in end-to-end Backend API development, Frontend UI/UX design, and technical consulting for cross-functional teams.
 Work Experience
 Sr. Programmer | Entronica Co., Ltd. (May 2024 – Present)
 Developer Role: Designed and developed Backend services using Java Spring Boot for new system builds and API development.
@@ -14,7 +14,7 @@ Backup Consultant Role: Served as technical advisor to the team, analyzing compl
 Project Management Office | INTERNATIONAL RESEARCH CORPORATION (November 2023 – April 2024)
 Oversaw program delivery timelines and enforced strict quality checks on all deliverables.
 Coordination Role: Acted as a liaison between vendors and clients to ensure smooth project progression on both sides, significantly reducing the risk of project delivery delays.
-Full Stack Web Developer | myHR Corporation Limited (June 2021 – November 2023)
+Full Stack Web Developer | myHR Corporation Limited (June 2021 – October 2023)
 Primary Role: Developed and designed a Full Stack HRM (Human Resource Management) system covering both Backend and Frontend.
 System & Database Design: Collaborated closely with the Presale team to gather requirements, improve the system for clients/users, conduct initial UX/UI design, and maintain database architecture for optimal system performance.
 Technology & Frameworks: Built with JSP (JavaServer Pages), AngularJS, and JavaScript alongside an in-house MVC framework (CSCframework) using Java and XML for database structure and model definitions bridging Frontend and Backend.
