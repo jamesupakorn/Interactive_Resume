@@ -10,6 +10,22 @@ Quick guide for working in this repo.
 - PDF CV export for Thai, English, and combined EN-first then TH.
 - GitHub Pages deploys from `PRD` and the app lives under `/Interactive_Resume/`.
 
+## Start Here (Pipeline Intelligence)
+
+Before scanning source files, read these in order:
+1. `.pipeline/WORKSPACE.md` — entry points, commands, what NOT to read
+2. `.pipeline/ARCHITECTURE.md` — module map and data flow
+3. `.pipeline/BUSINESS_RULE.md` — content sync rules, CV constraints
+
+If `.pipeline/` is missing, run `/project-init` to regenerate it.
+
+## Low-Token Workflow Rules
+
+- Identify impacted modules from `.pipeline/CONTEXT.md` before opening source files
+- Never scan all source files by default — use the context map
+- Use minimum required files per task
+- Ask when uncertain rather than guessing
+
 ## Core Commands
 
 ```bash

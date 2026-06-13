@@ -80,7 +80,6 @@ function buildJourneyStops(t) {
 export {
   AVATAR_LAB_HASH,
   JOURNEY_START_Z,
-  JOURNEY_STEP,
   buildJourneyStops,
   getRoadX,
   getViewFromHash,

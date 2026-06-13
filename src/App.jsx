@@ -15,6 +15,7 @@ import {
 
 // Helper to build correct paths for models based on build base path
 const getModelPath = (path) => `${import.meta.env.BASE_URL}${path}`;
+const ONLINE_RESUME_URL = "https://jamesupakorn.github.io/Interactive_Resume/";
 
 class CanvasErrorBoundary extends Component {
   constructor(props) {
@@ -113,7 +114,6 @@ function App() {
     : { alpha: true, antialias: false, powerPreference: "high-performance" };
 
   const t = content[lang];
-  const onlineResumeUrl = "https://jamesupakorn.github.io/Interactive_Resume/";
   const journeyStops = useMemo(() => buildJourneyStops(t), [t]);
   const activeStop = journeyStops[activeStopIndex] ??
     journeyStops[0] ?? {
@@ -223,7 +223,6 @@ function App() {
               {t.backToResume}
             </button>
             <button
-              id="toggleTheme"
               type="button"
               onClick={() => setTheme((prev) => (prev === "light" ? "dark" : "light"))}
             >
@@ -269,7 +268,7 @@ function App() {
                   onPointerLeave={resetMoveState}
                   onContextMenu={(e) => e.preventDefault()}
                 >
-                  ↑ เดินหน้า
+                  {t.moveControls.forward}
                 </button>
                 <button
                   type="button"
@@ -279,7 +278,7 @@ function App() {
                   onPointerLeave={resetMoveState}
                   onContextMenu={(e) => e.preventDefault()}
                 >
-                  ↓ ถอยหลัง
+                  {t.moveControls.backward}
                 </button>
                 <button
                   type="button"
@@ -291,7 +290,7 @@ function App() {
                   onPointerLeave={resetMoveState}
                   onContextMenu={(e) => e.preventDefault()}
                 >
-                  ⚡ เร่ง
+                  {t.moveControls.sprint}
                 </button>
               </div>
             </div>
@@ -351,6 +350,9 @@ function App() {
         <div className="site-nav-controls">
           <button type="button" className="btn-journey-sm" onClick={openAvatarLab}>
             {t.openAvatarLab}
+          </button>
+          <button type="button" className="btn-nav-cv" onClick={() => setCvModalOpen(true)}>
+            ⬇ CV
           </button>
           <div className="site-nav-lang">
             <LanguageSwitch lang={lang} setLang={setLang} />
@@ -477,9 +479,16 @@ function App() {
                       </span>
                     ))}
                   </div>
-                  <a className="portfolio-link" href={project.url} target="_blank" rel="noreferrer">
-                    {project.label} →
-                  </a>
+                  <div className="portfolio-links">
+                    <a className="portfolio-link" href={project.url} target="_blank" rel="noreferrer">
+                      {project.label} →
+                    </a>
+                    {project.repo && (
+                      <a className="portfolio-repo-link" href={project.repo} target="_blank" rel="noreferrer">
+                        {t.repoLabel}
+                      </a>
+                    )}
+                  </div>
                 </article>
               ))}
             </div>
@@ -504,6 +513,12 @@ function App() {
               <a href="https://line.me/ti/p/~manofmoon" target="_blank" rel="noreferrer">
                 {t.contact.line}
               </a>
+              <a href="https://github.com/jamesupakorn" target="_blank" rel="noreferrer">
+                {t.contact.github}
+              </a>
+              <a href="https://www.linkedin.com/in/supakorn-reangkasiwit-b6b7a7201/" target="_blank" rel="noreferrer">
+                {t.contact.linkedin}
+              </a>
             </div>
           </section>
         </main>
@@ -527,8 +542,8 @@ function App() {
             <span>{t.contact.phone}</span>
             <span>{t.contact.email}</span>
             <span>{t.contact.line}</span>
-            <a className="pcv-online-link" href={onlineResumeUrl}>
-              Resume Online: {onlineResumeUrl}
+            <a className="pcv-online-link" href={ONLINE_RESUME_URL}>
+              Resume Online: {ONLINE_RESUME_URL}
             </a>
           </div>
         </header>
@@ -655,39 +670,24 @@ function JourneyScene({ activeStopIndex, onStopChange, moveInput, theme, timelin
       {timelineStops.map((stop, index) => {
         const pinOffset = stop.side * 2.7;
         const isActive = index === activeStopIndex;
-        const stopState = isActive ? "current" : "hidden";
 
         if (!isActive) {
           return null;
         }
 
-        const stopOpacity = 1;
-
         return (
           <group key={`${stop.title}-${index}`} position={[stop.x, 0, stop.z]}>
             <mesh position={[0, -0.98, 0]}>
               <cylinderGeometry args={[0.18, 0.18, 0.12, 18]} />
-              <meshStandardMaterial
-                color={isActive ? "#ff8a3c" : "#2fd4c7"}
-                transparent
-                opacity={stopOpacity}
-              />
+              <meshStandardMaterial color="#ff8a3c" />
             </mesh>
             <mesh position={[pinOffset * 0.5, -0.82, 0]} rotation={[0, 0, 0.08 * stop.side]}>
               <boxGeometry args={[Math.abs(pinOffset), 0.03, 0.03]} />
-              <meshStandardMaterial
-                color={theme === "light" ? "#94744d" : "#88aab8"}
-                transparent
-                opacity={stopOpacity}
-              />
+              <meshStandardMaterial color={theme === "light" ? "#94744d" : "#88aab8"} />
             </mesh>
             <mesh position={[pinOffset, -0.18, 0]}>
               <cylinderGeometry args={[0.04, 0.04, 1.15, 12]} />
-              <meshStandardMaterial
-                color={theme === "light" ? "#70593d" : "#8ab9ca"}
-                transparent
-                opacity={stopOpacity}
-              />
+              <meshStandardMaterial color={theme === "light" ? "#70593d" : "#8ab9ca"} />
             </mesh>
             <Html position={[pinOffset, 0.62, 0]} distanceFactor={11} zIndexRange={[2, 0]}>
               <div
@@ -696,7 +696,7 @@ function JourneyScene({ activeStopIndex, onStopChange, moveInput, theme, timelin
                   transform: `translateX(${stop.side === -1 ? "0%" : "-100%"}) translateY(-50%)`,
                 }}
               >
-                <div className={`journey-pin ${stopState}${isActive ? " active" : ""}`}>
+                <div className="journey-pin current active">
                   <div className="journey-pin-section">{stop.section}</div>
                   <div className="journey-pin-title">{stop.title}</div>
                 </div>
@@ -729,6 +729,11 @@ function AvatarModel({ moveInput, onStopChange, timelineStops }) {
   const movingRef = useRef("idle");
   const activeStopRef = useRef(0);
   const baseYRef = useRef(-1.15);
+
+  const { minZ, maxZ } = useMemo(() => {
+    const zValues = timelineStops.map((stop) => stop.z);
+    return { minZ: Math.min(...zValues), maxZ: Math.max(...zValues) };
+  }, [timelineStops]);
 
   const idleClip = useMemo(() => {
     const sourceClips = gltf.animations ?? [];
@@ -841,9 +846,6 @@ function AvatarModel({ moveInput, onStopChange, timelineStops }) {
       return;
     }
 
-    const allZ = timelineStops.map((stop) => stop.z);
-    const minZ = Math.min(...allZ);
-    const maxZ = Math.max(...allZ);
     const isForward = keysRef.current.forward || moveInput.forward;
     const isBackward = keysRef.current.backward || moveInput.backward;
     const isSprint = keysRef.current.sprint || moveInput.sprint;
@@ -1089,6 +1091,7 @@ function CvDownloadModal({ lang, baseUrl, onClose }) {
 useGLTF.preload(getModelPath("models/Supakorn.glb"));
 useGLTF.preload(getModelPath("models/supakorn_suit_Tpost.glb"));
 useFBX.preload(getModelPath("models/Walking.fbx"));
+useFBX.preload(getModelPath("models/Run.fbx"));
 useFBX.preload(getModelPath("models/Male%20Standing%20Pose.fbx"));
 
 export default App;

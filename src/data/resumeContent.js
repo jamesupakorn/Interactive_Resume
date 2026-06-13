@@ -69,11 +69,11 @@ const content = {
       expert: "เชี่ยวชาญ",
       intermediate: "ระดับกลาง",
       basic: "พื้นฐาน",
-      database: "ระดับกลาง",
+      database: "ฐานข้อมูล",
       tools: "เครื่องมือ",
     },
     profileSummary:
-      "โปรแกรมเมอร์ผู้มีประสบการณ์มากกว่า 5 ปี เชี่ยวชาญด้านการพัฒนาโปรแกรมทั้ง Backend และ Frontend ด้วย Java, JSP และ Spring Boot มีผลงานเด่นในโปรเจกต์ที่ซับซ้อน เช่น ระบบข้อมูลทางการแพทย์และระบบบริหารทรัพยากรบุคคล พร้อมทั้งสามารถให้คำปรึกษาและแก้ปัญหาเชิงเทคนิคให้ทีมได้อย่างมีประสิทธิภาพ",
+      "Senior Full Stack Developer ประสบการณ์ 5+ ปี เชี่ยวชาญ Java · Spring Boot · JSP · React พัฒนาระบบจริงใน Domain Healthcare (ระบบกล้องรถพยาบาล, คิวผู้ป่วย, Tele Pharma, EMS Bot), HR Management และ Financial Services มีประสบการณ์ครบวงจรทั้ง Backend API, Frontend UI/UX และ Technical Consulting สำหรับทีมข้ามสาย",
     avatarLabTitle: "Life Journey",
     avatarLabDescription:
       "เดินตามเส้นทางชีวิตจากอดีตสู่ปัจจุบัน แล้วดูหมุดประวัติสำคัญทีละช่วงบนทางเดินเดียว",
@@ -107,7 +107,7 @@ const content = {
       },
       {
         title: "Full Stack Web Developer | myHR Corporation Limited",
-        date: "มิถุนายน 2564 - พฤศจิกายน 2566",
+        date: "มิถุนายน 2564 - ตุลาคม 2566",
         description: [
           "พัฒนาและออกแบบระบบ HRM แบบ Full Stack ทั้ง Backend และ Frontend",
           "ทำงานร่วมกับทีม Presale เก็บ Requirement ปรับปรุงระบบ และออกแบบ UX/UI เบื้องต้น",
@@ -158,6 +158,7 @@ const content = {
           "เว็บ Portfolio แบบ Interactive พัฒนาด้วย React + Three.js มี 3D Avatar, Life Journey timeline, theme toggle และรองรับดาวน์โหลด CV หลายภาษา",
         tech: ["React", "Three.js", "Vite"],
         url: "https://jamesupakorn.github.io/Interactive_Resume/",
+        repo: "https://github.com/jamesupakorn/Interactive_Resume",
         label: "ดูผลงาน",
       },
       {
@@ -166,6 +167,7 @@ const content = {
           "แอปพลิเคชันติดตามการเงินส่วนบุคคล ออกแบบมาเพื่อช่วยบันทึกรายรับ-รายจ่าย วิเคราะห์ข้อมูล และสรุปสถานะการเงินได้อย่างชัดเจน",
         tech: ["React", "Next.js", "MongoDB", "Vercel"],
         url: "https://finance-track-one.vercel.app/profiles",
+        repo: "https://github.com/jamesupakorn/FinanceTrack",
         label: "ดูผลงาน",
       },
       {
@@ -174,6 +176,7 @@ const content = {
           "ระบบจัดการร้านกาแฟแบบ Full Stack รองรับเมนู ตะกร้าสินค้า จัดการ Stock และหน้า Admin แยก Frontend/Backend ชัดเจน",
         tech: ["React", "Node.js", "PostgreSQL", "Supabase", "Vercel"],
         url: "https://toothbin.vercel.app/",
+        repo: "https://github.com/jamesupakorn/ToothBin",
         label: "ดูผลงาน",
       },
       {
@@ -182,10 +185,12 @@ const content = {
           "บริการ Backend API สำหรับระบบ ToothBin รองรับการเชื่อมต่อข้อมูลและการทำงานฝั่งเซิร์ฟเวอร์",
         tech: ["Node.js", "Express", "Supabase", "Vercel"],
         url: "https://tooth-node-api.vercel.app/",
+        repo: "https://github.com/jamesupakorn/ToothBin",
         label: "ดูผลงาน",
       },
     ],
     repoTitle: "GitHub Repositories",
+    repoLabel: "ดู Code",
     repositories: [
       {
         name: "FinanceTrack",
@@ -204,6 +209,13 @@ const content = {
       phone: "โทร: 093-772-0044",
       email: "อีเมล: jamesupakorn@hotmail.com",
       line: "Line: manofmoon",
+      github: "GitHub: jamesupakorn",
+      linkedin: "LinkedIn: ศุภกร",
+    },
+    moveControls: {
+      forward: "↑ เดินหน้า",
+      backward: "↓ ถอยหลัง",
+      sprint: "⚡ เร่ง",
     },
   },
   en: {
@@ -250,10 +262,10 @@ const content = {
       intermediate: "Intermediate",
       basic: "Basic",
       database: "Database",
-      tools: "Tool",
+      tools: "Tools",
     },
     profileSummary:
-      "A programmer with over 5 years of experience specializing in both Backend and Frontend development using Java, JSP, and Spring Boot. Passionate about coding since my studies, I have delivered high-quality solutions for complex projects including medical data management and HR management systems. I am also skilled at consulting and resolving technical challenges for the team.",
+      "Senior Full Stack Developer with 5+ years of experience across Java · Spring Boot · JSP · React. Delivered production systems in Healthcare (real-time ambulance monitoring, patient queue, Tele Pharma, EMS Bot), HRM, and Fintech domains. Experienced in end-to-end Backend API development, Frontend UI/UX, and technical consulting for cross-functional teams.",
     avatarLabTitle: "Life Journey",
     avatarLabDescription:
       "Walk through a single life path from the past to the present and discover key milestones as you move.",
@@ -286,7 +298,7 @@ const content = {
       },
       {
         title: "Full Stack Web Developer | myHR Corporation Limited",
-        date: "June 2021 – November 2023",
+        date: "June 2021 – October 2023",
         description: [
           "Developed and designed a Full Stack HRM (Human Resource Management) system covering both Backend and Frontend.",
           "Collaborated with the Presale team to gather requirements, improve the system, and conduct initial UX/UI design.",
@@ -337,6 +349,7 @@ const content = {
           "An interactive portfolio built with React and Three.js, featuring a 3D Avatar, Life Journey timeline, theme toggle, and multi-language CV download.",
         tech: ["React", "Three.js", "Vite"],
         url: "https://jamesupakorn.github.io/Interactive_Resume/",
+        repo: "https://github.com/jamesupakorn/Interactive_Resume",
         label: "View Project",
       },
       {
@@ -345,6 +358,7 @@ const content = {
           "A personal finance tracking application for recording income and expenses, analyzing spending patterns, and summarizing financial status clearly.",
         tech: ["React", "Next.js", "MongoDB", "Vercel"],
         url: "https://finance-track-one.vercel.app/profiles",
+        repo: "https://github.com/jamesupakorn/FinanceTrack",
         label: "View Project",
       },
       {
@@ -353,6 +367,7 @@ const content = {
           "A full-stack cafe management system supporting menus, shopping cart, stock management, and an Admin dashboard with clearly separated Frontend and Backend.",
         tech: ["React", "Node.js", "PostgreSQL", "Supabase", "Vercel"],
         url: "https://toothbin.vercel.app/",
+        repo: "https://github.com/jamesupakorn/ToothBin",
         label: "View Project",
       },
       {
@@ -361,10 +376,12 @@ const content = {
           "A backend API service for ToothBin, handling data connectivity and server-side operations.",
         tech: ["Node.js", "Express", "Supabase", "Vercel"],
         url: "https://tooth-node-api.vercel.app/",
+        repo: "https://github.com/jamesupakorn/ToothBin",
         label: "View Project",
       },
     ],
     repoTitle: "GitHub Repositories",
+    repoLabel: "View Code",
     repositories: [
       {
         name: "FinanceTrack",
@@ -383,6 +400,13 @@ const content = {
       phone: "Tel: 093-772-0044",
       email: "Email: jamesupakorn@hotmail.com",
       line: "Line: manofmoon",
+      github: "GitHub: jamesupakorn",
+      linkedin: "LinkedIn: Supakorn",
+    },
+    moveControls: {
+      forward: "↑ Forward",
+      backward: "↓ Backward",
+      sprint: "⚡ Sprint",
     },
   },
 };
