@@ -32,6 +32,8 @@ const content = {
     subtitle: "Sr. Programmer / Full Stack Developer",
     switchTheme: "Switch Theme",
     contactBtn: "ติดต่อ",
+    heroTagline: "Sr. Programmer | 8+ ปี | Java · React · Spring Boot",
+    heroCtaProjects: "ดูผลงาน",
     openAvatarLab: "เส้นทางชีวิต",
     backToResume: "← Resume",
     navLinks: [
@@ -39,7 +41,7 @@ const content = {
       { href: "#skills", label: "ทักษะ" },
       { href: "#experience", label: "ประสบการณ์" },
       { href: "#education", label: "การศึกษา" },
-      { href: "#portfolio", label: "ผลงาน" },
+      { href: "#projects", label: "ผลงาน" },
       { href: "#contact", label: "ติดต่อ" },
     ],
     heroStats: [
@@ -56,6 +58,7 @@ const content = {
       education: "การศึกษา",
       contact: "ข้อมูลติดต่อ",
       portfolio: "ผลงาน",
+      projects: "ผลงานของฉัน",
     },
     filters: {
       all: "ทั้งหมด",
@@ -153,12 +156,12 @@ const content = {
     ],
     portfolio: [
       {
-        title: "Interactive Resume",
+        title: "ToothBin",
         description:
-          "เว็บ Portfolio แบบ Interactive พัฒนาด้วย React + Three.js มี 3D Avatar, Life Journey timeline, theme toggle และรองรับดาวน์โหลด CV หลายภาษา",
-        tech: ["React", "Three.js", "Vite"],
-        url: "https://jamesupakorn.github.io/Interactive_Resume/",
-        repo: "https://github.com/jamesupakorn/Interactive_Resume",
+          "ระบบจัดการร้านกาแฟแบบ Full Stack รองรับเมนู ตะกร้าสินค้า จัดการ Stock และหน้า Admin แยก Frontend/Backend ชัดเจน",
+        tech: ["React", "Node.js", "PostgreSQL", "Supabase", "Vercel"],
+        url: "https://toothbin.vercel.app/",
+        repo: "https://github.com/jamesupakorn/ToothBin",
         label: "ดูผลงาน",
       },
       {
@@ -171,12 +174,12 @@ const content = {
         label: "ดูผลงาน",
       },
       {
-        title: "ToothBin",
+        title: "Interactive Resume",
         description:
-          "ระบบจัดการร้านกาแฟแบบ Full Stack รองรับเมนู ตะกร้าสินค้า จัดการ Stock และหน้า Admin แยก Frontend/Backend ชัดเจน",
-        tech: ["React", "Node.js", "PostgreSQL", "Supabase", "Vercel"],
-        url: "https://toothbin.vercel.app/",
-        repo: "https://github.com/jamesupakorn/ToothBin",
+          "เว็บ Portfolio แบบ Interactive พัฒนาด้วย React + Three.js มี 3D Avatar, Life Journey timeline, theme toggle และรองรับดาวน์โหลด CV หลายภาษา",
+        tech: ["React", "Three.js", "Vite"],
+        url: "https://jamesupakorn.github.io/Interactive_Resume/",
+        repo: "https://github.com/jamesupakorn/Interactive_Resume",
         label: "ดูผลงาน",
       },
       {
@@ -191,6 +194,14 @@ const content = {
     ],
     repoTitle: "GitHub Repositories",
     repoLabel: "ดู Code",
+    liveLabel: "ดู Live",
+    githubLabel: "GitHub",
+    contactCards: [
+      { icon: "📧", label: "Email", value: "jamesupakorn@hotmail.com", href: "mailto:jamesupakorn@hotmail.com", disabled: false },
+      { icon: "💬", label: "Line", value: "manofmoon", href: "https://line.me/ti/p/~manofmoon", disabled: false },
+      { icon: "🐙", label: "GitHub", value: "jamesupakorn", href: "https://github.com/jamesupakorn", disabled: false },
+      { icon: "💼", label: "LinkedIn", value: "เร็วๆ นี้", href: null, disabled: true },
+    ],
     repositories: [
       {
         name: "FinanceTrack",
@@ -224,6 +235,8 @@ const content = {
     subtitle: "Sr. Programmer / Full Stack Developer",
     switchTheme: "Switch Theme",
     contactBtn: "Contact",
+    heroTagline: "Sr. Programmer | 8+ yrs | Java · React · Spring Boot",
+    heroCtaProjects: "See Projects",
     openAvatarLab: "Life Journey",
     backToResume: "← Resume",
     navLinks: [
@@ -231,7 +244,7 @@ const content = {
       { href: "#skills", label: "Skills" },
       { href: "#experience", label: "Experience" },
       { href: "#education", label: "Education" },
-      { href: "#portfolio", label: "Portfolio" },
+      { href: "#projects", label: "Projects" },
       { href: "#contact", label: "Contact" },
     ],
     heroStats: [
@@ -248,6 +261,7 @@ const content = {
       education: "Education",
       contact: "Contact",
       portfolio: "Portfolio",
+      projects: "My Projects",
     },
     filters: {
       all: "All",
@@ -344,12 +358,12 @@ const content = {
     ],
     portfolio: [
       {
-        title: "Interactive Resume",
+        title: "ToothBin",
         description:
-          "An interactive portfolio built with React and Three.js, featuring a 3D Avatar, Life Journey timeline, theme toggle, and multi-language CV download.",
-        tech: ["React", "Three.js", "Vite"],
-        url: "https://jamesupakorn.github.io/Interactive_Resume/",
-        repo: "https://github.com/jamesupakorn/Interactive_Resume",
+          "A full-stack cafe management system supporting menus, shopping cart, stock management, and an Admin dashboard with clearly separated Frontend and Backend.",
+        tech: ["React", "Node.js", "PostgreSQL", "Supabase", "Vercel"],
+        url: "https://toothbin.vercel.app/",
+        repo: "https://github.com/jamesupakorn/ToothBin",
         label: "View Project",
       },
       {
@@ -362,12 +376,12 @@ const content = {
         label: "View Project",
       },
       {
-        title: "ToothBin",
+        title: "Interactive Resume",
         description:
-          "A full-stack cafe management system supporting menus, shopping cart, stock management, and an Admin dashboard with clearly separated Frontend and Backend.",
-        tech: ["React", "Node.js", "PostgreSQL", "Supabase", "Vercel"],
-        url: "https://toothbin.vercel.app/",
-        repo: "https://github.com/jamesupakorn/ToothBin",
+          "An interactive portfolio built with React and Three.js, featuring a 3D Avatar, Life Journey timeline, theme toggle, and multi-language CV download.",
+        tech: ["React", "Three.js", "Vite"],
+        url: "https://jamesupakorn.github.io/Interactive_Resume/",
+        repo: "https://github.com/jamesupakorn/Interactive_Resume",
         label: "View Project",
       },
       {
@@ -382,6 +396,14 @@ const content = {
     ],
     repoTitle: "GitHub Repositories",
     repoLabel: "View Code",
+    liveLabel: "Live Demo",
+    githubLabel: "GitHub",
+    contactCards: [
+      { icon: "📧", label: "Email", value: "jamesupakorn@hotmail.com", href: "mailto:jamesupakorn@hotmail.com", disabled: false },
+      { icon: "💬", label: "Line", value: "manofmoon", href: "https://line.me/ti/p/~manofmoon", disabled: false },
+      { icon: "🐙", label: "GitHub", value: "jamesupakorn", href: "https://github.com/jamesupakorn", disabled: false },
+      { icon: "💼", label: "LinkedIn", value: "Coming soon", href: null, disabled: true },
+    ],
     repositories: [
       {
         name: "FinanceTrack",
