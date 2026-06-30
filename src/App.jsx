@@ -70,6 +70,122 @@ function LanguageSwitch({ lang, setLang }) {
   );
 }
 
+const TECH_BADGE_COLORS = {
+  React: "#61DAFB",
+  "Next.js": "#e0e0e0",
+  "Node.js": "#339933",
+  "Three.js": "#049EF4",
+  PostgreSQL: "#4169E1",
+  MongoDB: "#47A248",
+  Vite: "#646CFF",
+  Supabase: "#3ECF8E",
+  Vercel: "#e0e0e0",
+  Express: "#e0e0e0",
+  Java: "#F89820",
+  "Spring Boot": "#6DB33F",
+};
+
+function ProjectCarousel({ t, onOpenCvModal }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const touchStartX = useRef(null);
+  const projects = t.portfolio.slice(0, 3);
+
+  const prev = () => setActiveIndex((i) => Math.max(0, i - 1));
+  const next = () => setActiveIndex((i) => Math.min(projects.length - 1, i + 1));
+
+  const onTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const onTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(delta) > 40) delta > 0 ? next() : prev();
+    touchStartX.current = null;
+  };
+
+  const project = projects[activeIndex];
+
+  return (
+    <section className="panel" id="projects">
+      <h2>{t.sections.projects}</h2>
+      <div className="project-carousel" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+        <button
+          className="carousel-nav"
+          onClick={prev}
+          disabled={activeIndex === 0}
+          aria-label="Previous project"
+        >
+          ‹
+        </button>
+
+        <div className="carousel-card" key={activeIndex}>
+          <div className="carousel-thumb">
+            <span className="carousel-initials">{project.title.charAt(0)}</span>
+          </div>
+          <div className="carousel-content">
+            <h3 className="carousel-title">{project.title}</h3>
+            <p className="carousel-desc">{project.description}</p>
+            <div className="carousel-badges">
+              {project.tech.map((tech) => (
+                <span
+                  key={tech}
+                  className="tech-badge"
+                  style={{
+                    borderColor: TECH_BADGE_COLORS[tech] || "rgba(255,255,255,0.2)",
+                    color: TECH_BADGE_COLORS[tech] || "rgba(255,255,255,0.55)",
+                  }}
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+            <div className="carousel-links">
+              <a
+                className="carousel-link-live"
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🔗 {t.liveLabel}
+              </a>
+              {project.repo && (
+                <a
+                  className="carousel-link-repo"
+                  href={project.repo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  ⑂ {t.githubLabel}
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <button
+          className="carousel-nav"
+          onClick={next}
+          disabled={activeIndex === projects.length - 1}
+          aria-label="Next project"
+        >
+          ›
+        </button>
+      </div>
+
+      <div className="carousel-dots">
+        {projects.map((_, i) => (
+          <button
+            key={i}
+            className={`carousel-dot${i === activeIndex ? " active" : ""}`}
+            onClick={() => setActiveIndex(i)}
+            aria-label={`Project ${i + 1}`}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function App() {
   const mouseRef = useRef({ x: 0, y: 0 });
   const [filter, setFilter] = useState("all");
@@ -376,10 +492,11 @@ function App() {
               <span className="hero-available">{t.availableLabel}</span>
               <h1>{t.name}</h1>
               <p className="subtitle">{t.subtitle}</p>
+              <p className="hero-tagline">{t.heroTagline}</p>
               <p className="hero-bio">{t.profileSummary}</p>
               <div className="hero-cta">
-                <a className="btn-primary" href="#contact">
-                  {t.contactBtn}
+                <a className="btn-primary" href="#projects">
+                  {t.heroCtaProjects}
                 </a>
                 <button type="button" className="btn-secondary" onClick={openAvatarLab}>
                   {t.openAvatarLab} →
@@ -465,60 +582,46 @@ function App() {
             </ul>
           </section>
 
-          <section className="panel" id="portfolio">
-            <h2>{t.sections.portfolio}</h2>
-            <div className="portfolio-grid">
-              {t.portfolio.map((project) => (
-                <article className="portfolio-card" key={project.title}>
-                  <div className="portfolio-title">{project.title}</div>
-                  <p className="portfolio-desc">{project.description}</p>
-                  <div className="portfolio-tech">
-                    {project.tech.map((tag) => (
-                      <span className="tech-tag" key={tag}>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="portfolio-links">
-                    <a className="portfolio-link" href={project.url} target="_blank" rel="noreferrer">
-                      {project.label} →
-                    </a>
-                    {project.repo && (
-                      <a className="portfolio-repo-link" href={project.repo} target="_blank" rel="noreferrer">
-                        {t.repoLabel}
-                      </a>
-                    )}
-                  </div>
-                </article>
-              ))}
-            </div>
-
-            <div className="repo-section">
-              <p className="repo-section-title">{t.repoTitle}</p>
-              <div className="contact-actions">
-                {t.repositories.map((repo) => (
-                  <a key={repo.url} href={repo.url} target="_blank" rel="noreferrer">
-                    {repo.name}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </section>
+          <ProjectCarousel t={t} />
 
           <section className="panel" id="contact">
             <h2>{t.sections.contact}</h2>
-            <div className="contact-actions">
-              <a href="tel:+66937720044">{t.contact.phone}</a>
-              <a href="mailto:jamesupakorn@hotmail.com">{t.contact.email}</a>
-              <a href="https://line.me/ti/p/~manofmoon" target="_blank" rel="noreferrer">
-                {t.contact.line}
-              </a>
-              <a href="https://github.com/jamesupakorn" target="_blank" rel="noreferrer">
-                {t.contact.github}
-              </a>
-              <a href="https://www.linkedin.com/in/supakorn-reangkasiwit-b6b7a7201/" target="_blank" rel="noreferrer">
-                {t.contact.linkedin}
-              </a>
+            <div className="contact-cards">
+              {t.contactCards.map((card) =>
+                card.disabled ? (
+                  <div
+                    key={card.label}
+                    className="contact-card contact-card--disabled"
+                    aria-disabled="true"
+                    title="Coming soon"
+                  >
+                    <span className="contact-card-icon">{card.icon}</span>
+                    <span className="contact-card-label">{card.label}</span>
+                    <span className="contact-card-value">{card.value}</span>
+                  </div>
+                ) : (
+                  <a
+                    key={card.label}
+                    className="contact-card"
+                    href={card.href}
+                    target={card.href.startsWith("mailto") ? undefined : "_blank"}
+                    rel={card.href.startsWith("mailto") ? undefined : "noopener noreferrer"}
+                  >
+                    <span className="contact-card-icon">{card.icon}</span>
+                    <span className="contact-card-label">{card.label}</span>
+                    <span className="contact-card-value">{card.value}</span>
+                  </a>
+                )
+              )}
+            </div>
+            <div className="contact-download">
+              <button
+                type="button"
+                className="btn-secondary btn-export-pdf"
+                onClick={() => setCvModalOpen(true)}
+              >
+                ⬇ {lang === "th" ? "ดาวน์โหลด CV" : "Download CV"} ▾
+              </button>
             </div>
           </section>
         </main>
