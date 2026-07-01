@@ -1,4 +1,5 @@
 import React, { Component, Fragment, Suspense, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Html, useAnimations, useFBX, useGLTF } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { clone } from "three/examples/jsm/utils/SkeletonUtils.js";
@@ -87,6 +88,7 @@ const TECH_BADGE_COLORS = {
 
 function ProjectCarousel({ t, onOpenCvModal }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [lightboxSrc, setLightboxSrc] = useState(null);
   const touchStartX = useRef(null);
   const projects = t.portfolio.slice(0, 3);
 
@@ -103,11 +105,45 @@ function ProjectCarousel({ t, onOpenCvModal }) {
     touchStartX.current = null;
   };
 
+  useEffect(() => {
+    if (!lightboxSrc) return;
+    const onKey = (e) => e.key === "Escape" && setLightboxSrc(null);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightboxSrc]);
+
   const project = projects[activeIndex];
 
   return (
-    <section className="panel" id="projects">
+    <>
+      {lightboxSrc && createPortal(
+        <div
+          className="lightbox-overlay"
+          onClick={() => setLightboxSrc(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Project screenshot"
+        >
+          <button
+            className="lightbox-close"
+            onClick={() => setLightboxSrc(null)}
+            aria-label="Close"
+          >
+            ✕
+          </button>
+          <img
+            src={lightboxSrc}
+            alt="Project screenshot"
+            className="lightbox-img"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>,
+        document.body
+      )}
+
+      <section className="panel" id="projects">
       <h2>{t.sections.projects}</h2>
+
       <div className="project-carousel" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
         <button
           className="carousel-nav"
@@ -120,7 +156,17 @@ function ProjectCarousel({ t, onOpenCvModal }) {
 
         <div className="carousel-card" key={activeIndex}>
           <div className="carousel-thumb">
-            <span className="carousel-initials">{project.title.charAt(0)}</span>
+            {project.image ? (
+              <img
+                src={`${import.meta.env.BASE_URL}${project.image}`}
+                alt={project.title}
+                className="carousel-thumb-img"
+                onClick={() => setLightboxSrc(`${import.meta.env.BASE_URL}${project.image}`)}
+                title="คลิกเพื่อขยาย"
+              />
+            ) : (
+              <span className="carousel-initials">{project.title.charAt(0)}</span>
+            )}
           </div>
           <div className="carousel-content">
             <h3 className="carousel-title">{project.title}</h3>
@@ -183,6 +229,7 @@ function ProjectCarousel({ t, onOpenCvModal }) {
         ))}
       </div>
     </section>
+    </>
   );
 }
 

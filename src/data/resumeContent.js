@@ -163,6 +163,7 @@ const content = {
         url: "https://toothbin.vercel.app/",
         repo: "https://github.com/jamesupakorn/ToothBin",
         label: "ดูผลงาน",
+        image: "images/projects/toothbin.png",
       },
       {
         title: "Finance Tracker",
@@ -172,6 +173,7 @@ const content = {
         url: "https://finance-track-one.vercel.app/profiles",
         repo: "https://github.com/jamesupakorn/FinanceTrack",
         label: "ดูผลงาน",
+        image: "images/projects/financetrack.png",
       },
       {
         title: "Interactive Resume",
@@ -181,6 +183,7 @@ const content = {
         url: "https://jamesupakorn.github.io/Interactive_Resume/",
         repo: "https://github.com/jamesupakorn/Interactive_Resume",
         label: "ดูผลงาน",
+        image: "images/projects/interactive-resume.png",
       },
       {
         title: "Tooth Node API",
@@ -200,7 +203,7 @@ const content = {
       { icon: "📧", label: "Email", value: "jamesupakorn@hotmail.com", href: "mailto:jamesupakorn@hotmail.com", disabled: false },
       { icon: "💬", label: "Line", value: "manofmoon", href: "https://line.me/ti/p/~manofmoon", disabled: false },
       { icon: "🐙", label: "GitHub", value: "jamesupakorn", href: "https://github.com/jamesupakorn", disabled: false },
-      { icon: "💼", label: "LinkedIn", value: "เร็วๆ นี้", href: null, disabled: true },
+      { icon: "💼", label: "LinkedIn", value: "supakorn-reangkasiwit", href: "https://www.linkedin.com/in/supakorn-reangkasiwit-b6b7a7201/", disabled: false },
     ],
     repositories: [
       {
@@ -365,6 +368,7 @@ const content = {
         url: "https://toothbin.vercel.app/",
         repo: "https://github.com/jamesupakorn/ToothBin",
         label: "View Project",
+        image: "images/projects/toothbin.png",
       },
       {
         title: "Finance Tracker",
@@ -374,6 +378,7 @@ const content = {
         url: "https://finance-track-one.vercel.app/profiles",
         repo: "https://github.com/jamesupakorn/FinanceTrack",
         label: "View Project",
+        image: "images/projects/financetrack.png",
       },
       {
         title: "Interactive Resume",
@@ -383,6 +388,7 @@ const content = {
         url: "https://jamesupakorn.github.io/Interactive_Resume/",
         repo: "https://github.com/jamesupakorn/Interactive_Resume",
         label: "View Project",
+        image: "images/projects/interactive-resume.png",
       },
       {
         title: "Tooth Node API",
@@ -402,7 +408,7 @@ const content = {
       { icon: "📧", label: "Email", value: "jamesupakorn@hotmail.com", href: "mailto:jamesupakorn@hotmail.com", disabled: false },
       { icon: "💬", label: "Line", value: "manofmoon", href: "https://line.me/ti/p/~manofmoon", disabled: false },
       { icon: "🐙", label: "GitHub", value: "jamesupakorn", href: "https://github.com/jamesupakorn", disabled: false },
-      { icon: "💼", label: "LinkedIn", value: "Coming soon", href: null, disabled: true },
+      { icon: "💼", label: "LinkedIn", value: "supakorn-reangkasiwit", href: "https://www.linkedin.com/in/supakorn-reangkasiwit-b6b7a7201/", disabled: false },
     ],
     repositories: [
       {
